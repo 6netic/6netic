@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}6netic{% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <!-- Favicons -->
+<!--    <link href="img/favicon.png" rel="icon">-->
+    <link href="static/cinetic/assets/img/favicon.png" rel="icon">
+    <link href="static/cinetic/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<!--    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">-->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700"
+          rel="stylesheet">
+    {% block css %}
+    <!-- Bootstrap CSS File -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Libraries CSS Files -->
+    <link href="{% static 'cinetic/assets/css/styles.css' %}" rel="stylesheet" />
+    <!--
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    -->
+
+    {% endblock %}
+</head>
+<body>
+    {% block header %}
+        {% include 'header.html' %}
+    {% endblock %} Ici on est sur base.html
+    {% block content %}
+
+    {% endblock %}
+
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">&copy; Copyright <strong>6netic.eu</strong>. All Rights Reserved</div>
+            <div class="credits">Concepteur : <a href="#">Eric Bresler</a></div>
+        </div>
+    </footer>
+    <!-- JS scripts on base.html -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- JavaScript Libraries -->
+    <!--
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/jquery/jquery-migrate.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/superfish/hoverIntent.js"></script>
+    <script src="lib/superfish/superfish.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+    <script src="contactform/contactform.js"></script>
+    <script src="js/main.js"></script>
+    -->
+    {% block js %}
+
+    {% endblock %}
+</body>
+</html>

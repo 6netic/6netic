@@ -1,0 +1,16 @@
+<div id="view_tour">
+  {% if no_date %}
+    <p style="color: red; font-style: italic;">Vous devez sélectionner une date !</p>
+  {% endif %}
+  {% if no_tour %}
+    <p style="color: blue; font-style: italic;">Pas de tournée enregistrée pour cette date.</p>
+  {% endif %}
+  <!-- A tour is in the database for this date -->
+  {% if tour_day %}
+    {% include 'l_orchidee/display_detailed_change_tour_head.html' %}
+    <div id="tourResults">
+      {% include 'l_orchidee/display_detailed_tour_head.html' %}
+      {% include 'l_orchidee/display_detailed_tour_body.html' %}
+    </div>
+  {% endif %}
+</div>

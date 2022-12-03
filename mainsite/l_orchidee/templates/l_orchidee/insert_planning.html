@@ -1,0 +1,82 @@
+{% extends "l_orchidee/base.html" %}
+{% load static %}
+{% block htmx  %}
+  <script src="{% static 'l_orchidee/js/htmx.min.js' %}"></script>
+{% endblock %}
+{% block wrapper %}
+  <section class="page-section" id="services">
+    <div class="container">
+      <div class="text-center"><br /><br />
+        <h3 class="section-subheading text-muted">Insertion du Planning</h3><br /><br /><br />
+        <div align="center">
+          <form id="form_planning" name="form_planning">
+            {% csrf_token %}
+            <table id="insert_planning">
+            <!-- Date for a Tour -->
+              <tr><td></td></tr>
+              <tr>
+                <td colspan="2" align="left"><label for="date_tour">Entrez une date de tournées :&nbsp;</label></td>
+                <td align="left"><input type="date" name="date_tour" id="date_tour"></td>
+              </tr>
+            <!-- Nurse1 for Pref Tour -->
+              <tr>
+                <td colspan="2" align="left">Pour la tournée de la Préfecture :&nbsp;</td>
+                <td align="left">
+                  <select name="nurse1_tour_pref">
+                    {% for nurse in nurses %}
+                    <option value="{{ nurse.id }}">{{ nurse.firstname }}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+              </tr>
+            <!-- Nurse2 for Vill Tour -->
+              <tr>
+                <td colspan="2" align="left">Pour la tournée du Village :&nbsp;</td>
+                <td align="left">
+                  <select name="nurse2_tour_vill">
+                    {% for nurse in nurses %}
+                    <option value="{{ nurse.id }}">{{ nurse.firstname }}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+              </tr>
+            <!-- Hidden value for record already in -->
+<!--              <input type="hidden" name="confirm" value="{{ confirm }}">-->
+              <tr>
+                <td colspan="2" align="left">
+                  <label for="rec_confirm">Forcer l'enregistrement.</label>
+                </td>
+                <td><input type="checkbox" name="rec_confirm" id="rec_confirm" value="yes"></td>
+              </tr>
+            <!-- save button -->
+              <tr>
+                  <td colspan="2" class="sendit">&nbsp;</td>
+                  <td align="left" class="td-insert-send">
+                      <button class="primary btn-secondary form-control" id="sendBtn" style="display:block;"
+                              hx-post="{% url 'l_orchidee:insert_planning' %}"
+                              hx-target="#confirmInsert"
+                              hx-swap="innerHTML"
+                              hx-encoding="multipart/form-data"
+                              type="submit">Ajouter
+                      </button>
+                  </td>
+              </tr>
+              <tr><td></td></tr>
+            </table>
+          </form>
+        </div>
+          <p>
+            {% include 'l_orchidee/insert_planning_resp.html' %}
+          </p>
+      </div>
+    </div>
+  </section>
+
+  <p>
+    <br /><br /><br /><br /><br /><br /><br /><br />
+  </p>
+
+{% endblock %}
+{% block js %}
+
+{% endblock %}

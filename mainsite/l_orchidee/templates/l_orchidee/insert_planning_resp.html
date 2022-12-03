@@ -1,0 +1,30 @@
+<div id="confirmInsert">
+  <!-- sent from insert_planning/
+       Empty value in date field -->
+  {% if bad_var %}
+    <span style="color:red;">
+      {% for one_bad_var in bad_var %}
+        {{ one_bad_var }}<br>
+      {% endfor %}
+    </span>
+  {% endif %}
+  <!-- sent from insert_planning/
+       The date already has a record in the database -->
+  {% if in_db %}
+    <table align="center" style="color:red;" >
+      <tr><td align="left">Il existe déjà un enregistrement à cette date :</td></tr>
+    {% for one in entry %}
+      <tr><td align="left">- Tournée de la préfecture :&nbsp;{{ one.tour1.firstname }}</td></tr>
+      <tr><td align="left">- Tournée du Village :&nbsp;{{ one.tour2.firstname }}</td></tr>
+      <tr><td align="left">Pour enregistrer, cocher la case du dessus.</td></tr>
+    {% endfor %}
+    </table>
+  {% endif %}
+  <!-- sent from insert_planning/
+       That day has been correctly registered -->
+  {% if registered %}
+    <span style="color:green;">
+      {{ registered }}
+    </span>
+  {% endif %}
+</div>

@@ -1,0 +1,60 @@
+{% extends "l_orchidee/base.html" %}
+{% load static %}
+{% block htmx  %}
+  <script src="{% static 'l_orchidee/js/htmx.min.js' %}"></script>
+{% endblock %}
+{% block wrapper %}
+  <section class="page-section" id="services">
+    <div class="container">
+      <div class="text-center"><br /><br />
+        <h3 class="section-subheading text-muted">Visualisation du Planning</h3><br /><br />
+        <div align="center">
+          <table class="month_table">
+            <tr>
+              <td align="left">
+                <a href="{% url 'l_orchidee:view_planning' %}?year={{previous_year}}&month={{previous_month}}"
+                class="btn btn-outline-secondary" role="button">Mois Précédent
+                </a>
+              </td>
+              <td align="right">
+                <a href="{% url 'l_orchidee:view_planning' %}?year={{next_year}}&month={{next_month}}"
+                class="btn btn-outline-secondary" role="button">Mois Suivant</a>
+              </td>
+            </tr>
+          </table>
+          <p></p>
+          {{ show_planning }}
+          <br /><br />
+          <table class="planning_counter">
+            <tr>
+              <td></td>
+            {% for nurse in nurses %}
+              <td>{{ nurse.firstname }}</td>
+            {% endfor %}
+            </tr>
+            <tr>
+              <td>Préfecture</td>
+              <td>{{ ramata_pref.count }}</td>
+              <td>{{ amaria_pref.count }}</td>
+              <td>{{ beatrice_pref.count }}</td>
+              <td>{{ sonia_pref.count }}</td>
+            </tr>
+            <tr>
+              <td>Le Village</td>
+              <td>{{ ramata_vill.count }}</td>
+              <td>{{ amaria_vill.count }}</td>
+              <td>{{ beatrice_vill.count }}</td>
+              <td>{{ sonia_vill.count }}</td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </section>
+<br/><br/><br/>
+
+{% endblock %}
+{% block js %}
+
+{% endblock %}

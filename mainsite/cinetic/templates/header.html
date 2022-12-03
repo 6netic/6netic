@@ -1,0 +1,29 @@
+<header>
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top" style="background-color: #000000;">
+        <a class="navbar-brand" href="{% url 'cinetic:homepage' %}"
+           style="color: yellow; font-weight: bold; font-style: italic;">6netic.eu</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="nav-menu">
+                {% if home %}
+                <li class="menu-active"><a href="{% url 'cinetic:homepage' %}">Accueil</a></li>
+                {% else %}
+                <li><a href="{% url 'cinetic:homepage' %}">Accueil</a></li>
+                {% endif %}
+                {% if projets %}
+                <li class="menu-active"><a href="{% url 'cinetic:projets' %}">Projets</a></li>
+                {% else %}
+                <li><a href="{% url 'cinetic:projets' %}">Projets</a></li>
+                {% endif %}
+                {% if contact %}
+                <li class="menu-active"><a href="{% url 'cinetic:contact' %}">Contact</a></li>
+                {% else %}
+                <li><a href="{% url 'cinetic:contact' %}">Contact</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</header>

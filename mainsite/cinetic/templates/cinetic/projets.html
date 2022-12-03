@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section id="portfolio"  class="section-bg" >
+  <div class="container" align="center">
+    <header class="section-header">
+      <h3 class="section-title">Les Projets</h3>
+    </header>
+    <div class="row">
+      <header class="section-header wow fadeInUp">
+        <p>Liste des projets réalisés à ce jour.<br>
+           Le langage utilisé est uniquement Python et les frameworks, Django et Flask.<br>
+           Les bases de données utilisent PostgreSql.<br>
+        </p>
+      </header>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Objet</th>
+            <th>Type</th>
+            <th>Github</th>
+            <th>Url</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Projet 1 : ATP Ranking -->
+          <tr>
+            <td>ATP Men Ranking</td>
+            <td>
+              <div class="popup" onclick="showDescription('atp')">Afficher
+                <span class="popuptext" id="atp">
+                  Appli de scrapping pour récupérer le classement et les matchs des 100 premiers joueurs de Tennis
+                  classés à l'ATP.
+                </span>
+              </div>
+            </td>
+            <td>Appli</td>
+            <td><a href="https://github.com/6netic/atp_men_players" target="_blank">Dépôt</a></td>
+            <td></td>
+            <td>C'est la partie 1 d'un projet de Machine Learning qui permettra de prédire le vainqueur d'un match.<br />
+                Son utilité est d'aider à la décision d'un pari sur un joueur.
+            </td>
+          </tr>
+          <!-- Projet 2 : CompuVision -->
+          <tr>
+            <td>CompuVision</td>
+            <td>
+              <div class="popup" onclick="showDescription('compuvision')">Afficher
+                <span class="popuptext" id="compuvision">
+                En cour de construction.<br />
+                </span>
+              </div>
+            </td>
+            <td>Flask</td>
+            <td><a href="#" target="_blank">Dépôt</a></td>
+            <td><a href="#" target="_blank">Site</a></td>
+            <td>En cours de construction. Ne fonctionne pas sur Firefox !</td>
+          </tr>
+          <!-- Projet 3 : GrandPy -->
+          <tr>
+            <td>GrandPy</td>
+            <td>
+              <div class="popup" onclick="showDescription('grandpy')">Afficher
+                <span class="popuptext" id="grandpy">
+                Bot qui affiche la carte du lieu recherché ainsi qu'un extrait de son histoire.
+                Il s'agit d'un bot hébergé sur Heroku qui vous affiche la carte du lieu recherché
+                ainsi qu'un extrait de l'histoire de ce lieu.<br />
+                </span>
+              </div>
+            </td>
+            <td>Flask</td>
+            <td><a href="https://github.com/6netic/GrandPy" target="_blank">Dépôt</a></td>
+            <td><a href="https://grandpy-ebres.herokuapp.com" target="_blank">Site</a></td>
+            <td>Cette application web est hébergée sur Héroku. Vous entrez une adresse dans le champ de recherche
+                et si une réponse est trouvée sur MediaWiki alors ce lieu est affiché dans une carte et une courte
+                description est affichée.</td>
+          </tr>
+          <!-- Projet 4 : Hunting Quizz -->
+          <tr>
+            <td>Hunting Quizz</td>
+            <td>
+              <div class="popup" onclick="showDescription('huntingquizz')">Afficher
+                <span class="popuptext" id="huntingquizz">
+                  En cours de construction.<br />
+                </span>
+              </div>
+            </td>
+            <td>Django</td>
+            <td><a href="#" target="_self">Dépôt</a></td>
+            <td><a href="#" target="_self">Site</a></td>
+            <td>En cours de construction.</td>
+          </tr>
+          <!-- Projet 5 : l'orchidee -->
+          <tr>
+            <td>L'Orchidée</td>
+            <td>
+              <div class="popup" onclick="showDescription('lorchidee')">Afficher
+                <span class="popuptext" id="lorchidee">
+                  Appli web permettant d'afficher le planning des tournées pour des infirmières libérales.
+                </span>
+              </div>
+            </td>
+            <td>Django</td>
+            <td><a href="https://github.com/6netic/orchidee" target="_blank">Dépôt</a></td>
+            <td><a href="{% url 'l_orchidee:index' %}" target="_blank">Site</a></td>
+            <td>A partir de fichiers PDF des tournées générés par l'application Simply Vitale, cette appli va utiliser
+                la reconnaissance visuelle et de caractères pour l'enregistrer en base de données.<br />
+                On pourra ensuite visualiser chaque tournée dans un tableau avec la possibilité d'ajouter un commentaire
+                et de valider la visite du patient.<br />
+                L'intérêt est de pouvoir consulter les tournées sur smartphone et ainsi faciliter les tournées
+                quotidiennes des infirmières.
+            </td>
+          </tr>
+          <!-- Projet 6 : Limo Reservation -->
+          <tr>
+            <td>Limo Réservations</td>
+            <td>
+              <div class="popup" onclick="showDescription('limo')">Afficher
+                <span class="popuptext" id="limo">
+                  Maquette fonctionnelle pour une entreprise qui souhaitait permettre à ses clients d'enregistrer
+                  une course en individuel ou en groupe.
+                </span>
+              </div>
+            </td>
+            <td>Django</td>
+            <td><a href="https://github.com/6netic/limobooking" target="_blank">Dépôt</a></td>
+            <td><a href="#" target="_blank">Site</a></td>
+            <td>La maquette a été réalisée en fonction du cahier des charges.<br />
+                Le lieu de départ est invariable et le tarif varie en fonction de la distance, du jour et de l'heure.
+            </td>
+          </tr>
+          <!-- Projet 7 : Le labyrinthe de Mc Gyver -->
+          <tr>
+            <td>MG Labyrinth</td>
+            <td>
+              <div class="popup" onclick="showDescription('labyrinth')">Lire
+                <span class="popuptext" id="labyrinth">
+                  Petit jeu de labyrinthe réalisé avec Pygame.
+                </span>
+              </div>
+            </td>
+            <td>Appli</td>
+            <td><a href="https://github.com/6netic/mg_labyrinth" target="_blank">Dépôt</a></td>
+            <td></td>
+            <td>Il s'agit d'un jeu de labyrinthe en Python qui utilise la librairie Pygame.<br />
+                Le personnage est Mac Gyver et le but est de l'aider à trouver la sortie en ayant préalablement
+                ramassé 3 objets.<br /> Autrement, la partie sera perdue.<br />
+                Pour le faire fonctionner, il faudra télécharger le code à partir du dépot.
+            </td>
+          </tr>
+          <!-- Projet 8 : PurBeurre -->
+          <tr>
+            <td>PurBeurre</td>
+            <td>
+              <div class="popup" onclick="showDescription('purbeurre')">Afficher
+                <span class="popuptext" id="purbeurre">
+                 Permet de trouver un produit alimentaire plus sain que celui que vous proposez.
+                </span>
+              </div>
+            </td>
+            <td>Django</td>
+            <td><a href="https://github.com/6netic/dixpb" target="_blank">Dépôt</a></td>
+            <td><a href="#" target="_blank">Site</a></td>
+            <td>Site qui propose des produits plus sains que celui que vous entrez.<br />
+                La base de données alimentaire provient d'OpenFoodFacts via son API.<br />
+                Vous pouvez créer un compte et sauvegarder vos aliments préférés.
+            </td>
+          </tr>
+          <!-- Projet 9 : Scrape for fun -->
+          <tr>
+            <td>Scrape4Fun</td>
+            <td>
+              <div class="popup" onclick="showDescription('scrape4fun')">Afficher
+                <span class="popuptext" id="scrape4fun">
+                  Scrapping du site books.toscrape.com
+                </span>
+              </div>
+            </td>
+                <td>Appli</td>
+                <td><a href="https://github.com/6netic/scrape_for_fun" target="_blank">Dépôt</a></td>
+                <td></td>
+                <td>Application Python permettant de récupérer tous les livres du site books.toscrape.com et les
+                    enregistre dans un fichier .csv<br />
+                    Sur ce projet, c'est la bibliothèque BeautifulSoup qui a été utilisée.
+                </td>
+          </tr>
+          <!-- Projet 10 : Shooting Target -->
+          <tr>
+            <td>Shooting Target</td>
+            <td>
+              <div class="popup" onclick="showDescription('shooting-target')">Afficher
+                <span class="popuptext" id="shooting-target">
+                Il s'agit d'une appli hébergée sur Heroku qui propose d'afficher le résultat du nombre de points
+                sur une cible de 10 mètres.<br />
+                La librairie Opencv est utilisée.<br />
+                Pour le moment, l'appli est sommaire : ne sont reconnus que 10 trous qui ne se touchent pas.<br />
+                Des exemples de photos et explications sont disponibles sur le dépot Github.
+                </span>
+              </div>
+                </td>
+                <td>Flask</td>
+                <td><a href="https://github.com/6netic/shtarget" target="_blank">Dépôt</a></td>
+                <td><a href="https://target-ebres.herokuapp.com/" target="_blank">Site</a></td>
+                <td> - </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript" src="{% static 'cinetic/assets/js/projetsPopup.js' %}"></script>
+
+
+{% endblock %}

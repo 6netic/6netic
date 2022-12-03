@@ -1,0 +1,66 @@
+{% extends "ciblerie/base.html" %}
+{% load static %}
+{% block wrapper %}
+
+<style>
+  #video_container {
+    margin: 0px auto;
+    width: 500px;
+    height: 375px;
+    border: 10px #333 solid;
+  }
+  #video_frame {
+    margin: auto;
+    width: 100%;
+    height: 60%;
+    border: 2px #333 solid;
+    background-color: #666666;
+  }
+</style>
+  <section class="page-section" id="services">
+    <div class="container">
+      <div class="text-center"><br /><br />
+        <h3 class="section-subheading text-muted">Display Webcam Stream</h3><br /><br />
+        <p>
+          Première phrase sur cette application.
+          <br /><br />
+        </p>
+
+        <div>
+            <video autoplay="true" id="video_frame">
+
+            </video>
+        </div>
+
+          <br /><br />
+          truc muche
+      </div>
+    </div>
+  </section>
+  <br /><br /><br /><br /><br />
+
+{% endblock %}
+
+{% block js %}
+  <script>
+    let video = document.getElementById("video_frame");
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true })
+      .then(function(stream){
+        video.srcObject = stream;
+      })
+      .catch(function(error){
+        console.log("Something went wrong");
+      })
+    } else {
+      console.log("getUserMedia not supported");
+    }
+  </script>
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,118 @@
+
+<div id="confirmInsert" onload="hideButton()">
+
+  <!-- sent from display_form/
+       Displays correct actions to perform for the form to be processed correctly -->
+  {% if bad_var %}
+    <span style="color:red;">
+      {% for one_bad_var in bad_var %}
+        {{ one_bad_var }}<br>
+      {% endfor %}
+    </span>
+  {% endif %}
+  <!-- sent from check_variables/
+       Variables sent are correct, just displays a status message -->
+  {% if converted %}
+    <span style="color:grey;">
+      {% for status in converted %}
+        {{ status }}<br>
+      {% endfor %}
+    </span>
+    <form hx-trigger="load"
+          hx-post="{% url 'l_orchidee:extract_in_pref' %}"
+          hx-target="#confirmInsert"
+          hx-swap="innerHTML">
+    {% csrf_token %}
+    </form>
+  {% endif %}
+  <!-- sent from extract_in_pref/
+       One more jpg file has been extracted from Prefecture folder -->
+  {% if pref_extracting %}
+    <span style="color:grey;">
+      {{ pref_extracting }}
+    </span>
+    <form hx-trigger="load"
+          hx-post="{% url 'l_orchidee:extract_in_pref' %}"
+          hx-target="#confirmInsert"
+          hx-swap="innerHTML">
+    {% csrf_token %}
+    </form>
+  {% endif %}
+  <!-- sent from extract_in_pref/
+       All jpg files have been extracted from Prefecture folder -->
+  {% if pref_extracted %}
+    <span style="color:grey;">
+      {{ pref_extracted }}
+    </span>
+    <form hx-trigger="load"
+          hx-post="{% url 'l_orchidee:extract_in_vill' %}"
+          hx-target="#confirmInsert"
+          hx-swap="innerHTML">
+    {% csrf_token %}
+    </form>
+  {% endif %}
+  <!-- sent from extract_in_vill/
+       One more jpg file has been extracted from Village folder -->
+  {% if vill_extracting %}
+    <span style="color:grey;">
+      {{ vill_extracting }}
+    </span>
+    <form hx-trigger="load"
+          hx-post="{% url 'l_orchidee:extract_in_vill' %}"
+          hx-target="#confirmInsert"
+          hx-swap="innerHTML">
+    {% csrf_token %}
+    </form>
+  {% endif %}
+  <!-- sent from extract_in_vill/
+       All jpg files have been extracted from Village folder -->
+  {% if vill_extracted %}
+    <span style="color:grey;">
+      {{ vill_extracted }}
+    </span>
+    <form hx-trigger="load"
+          hx-post="{% url 'l_orchidee:check_date_and_is_registered' %}"
+          hx-target="#confirmInsert"
+          hx-swap="innerHTML">
+    {% csrf_token %}
+    </form>
+  {% endif %}
+  <!-- sent from check_date_and_is_registered/ -->
+  {% if error_in_date %}
+    <span style="color:red;">
+      {% for status in error_in_date %}
+        {{ status }}<br>
+      {% endfor %}
+    </span>
+  {% endif %}
+  {% if already_in %}
+    <span style="color:red;">
+      {{ already_in }}
+    </span>
+  {% endif %}
+  {% if recording_status %}
+    <span style="color:grey;">
+      {{ recording_status }}<br>
+    </span>
+    <form hx-trigger="load delay:2s"
+          hx-post="{% url 'l_orchidee:insert_tour' %}"
+          hx-target="#confirmInsert"
+          hx-swap="innerHTML">
+    {% csrf_token %}
+    </form>
+  {% endif %}
+  <!-- sent from insert_tour/ -->
+  {% if recorded %}
+    <span style="color:green;">
+      {{ recorded }}
+    </span>
+  {% endif %}
+  <!-- makes 'Enregistrer' button appear again -->
+  {% if show_btn %}
+    <script>
+      enregist.style.display = 'block';
+    </script>
+  {% endif %}
+
+</div>
+
