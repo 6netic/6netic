@@ -1,0 +1,150 @@
+{% extends 'limobooking/base.html' %}
+{% load static %}
+{% block wrapper %}
+  <form action="{% url 'limobooking:selectJourney' %}" method="POST">
+  {% csrf_token %}
+    <p id="ligne1">Destination : <span id="destination">{{ destination }}</span></p>
+    <p class="ligne2">Distance du trajet : <span id="laDistance"></span></p>
+  <br /><br />
+  	<table align="center" class="tableau">
+  	  <tr>
+        <td>{{ form.lastname.label }} {{ form.lastname }}</td>
+        <td>{{ form.firstname.label }} {{ form.firstname }}</td>
+        <td>{{ form.email.label }} {{ form.email }}</td>
+      </tr>
+    </table><br /><br />
+  	<table align="center" class="tableau">
+      <tr>
+        <td>{{ form.departureDate.label }} {{ form.departureDate }}</td>
+        <td>{{ form.hour.label }} {{ form.hour }}</td>
+        <td>{{ form.minute.label }} {{ form.minute }}</td>
+        <td>{{ form.sharing.label }} {{ form.sharing }}</td>
+        <td valign="bottom"><button type="submit" class="btn btn-success">Afficher le tarif</button></td>
+      </tr>
+    </table>
+        <input type="hidden" value="{{ destination }}" name="destination">
+        <input type="hidden" id="distance" name="distance" value="">
+  </form>
+  <br><br>
+<!-- ------------------------ Début du formulaire conditionnel ------------------------------- -->
+  <div align="center">
+{% if prices_dict and departureTime in prices_dict.keys %} <!-- departureTime en BDD -->
+  {% for key, prixCourse in prices_dict.items %} <!-- Parcours de chaque valeur dans prices_dict -->
+    {% if key == departureTime %} <!-- Affiche d'abord l'heure sélectionnée -->
+    <form action="{% url 'limobooking:recordJourney' %}" method="POST">{% csrf_token %}
+      <table class="tableau" width="60%">
+        <tr>
+          <td align="left">Heure de départ: {{ key }}  </td>
+          <td align="right"> Tarif: {{ prixCourse }} euros TTC</td>
+          <td align="right">
+            <button type="submit" class="btn btn-success">Je choisis cet horaire</button>
+          </td>
+        </tr>
+      </table>
+      <input type="hidden" name="departureTime" value="{{ key }}">
+      <input type="hidden" name="prixCourse" value="{{ prixCourse }}">
+      <input type="hidden" name="destination" value="{{ destination }}">
+      <input type="hidden" name="departureDate" value='{{ departureDate|date:"Y-m-d" }}'>
+      <input type="hidden" name="sharing" value="{{ sharing }}">
+      <input type="hidden" name="firstname" value="{{ firstname }}">
+      <input type="hidden" name="lastname" value="{{ lastname }}">
+      <input type="hidden" name="email" value="{{ email }}">
+    </form>
+    {% endif %}
+  {% endfor %}
+  <p style="color:yellow;">Les autres tarifs pour cette destination le même jour:</p>
+  {% for key, prixCourse in prices_dict.items %} <!-- Parcours des autres valeurs dans prices_dict -->
+    {% if key != departureTime %}
+    <form action="{% url 'limobooking:recordJourney' %}" method="POST">{% csrf_token %}
+      <table class="tableau" width="60%">
+        <tr>
+          <td align="left">Heure de départ: {{ key }}  </td>
+          <td align="right"> Tarif: {{ prixCourse }} euros TTC</td>
+          <td align="right">
+            <button type="submit" class="btn btn-success">Je choisis cet horaire</button>
+          </td>
+        </tr>
+      </table>
+      <input type="hidden" name="departureTime" value="{{ key }}">
+      <input type="hidden" name="prixCourse" value="{{ prixCourse }}">
+      <input type="hidden" name="destination" value="{{ destination }}">
+      <input type="hidden" name="departureDate" value='{{ departureDate|date:"Y-m-d" }}'>
+      <input type="hidden" name="sharing" value="{{ sharing }}">
+      <input type="hidden" name="firstname" value="{{ firstname }}">
+      <input type="hidden" name="lastname" value="{{ lastname }}">
+      <input type="hidden" name="email" value="{{ email }}">
+    </form>
+    {% endif %}
+  {% endfor %}
+
+{% elif prices_dict and departureTime not in prices_dict.keys %} <!-- departureTime n'est pas en BDD -->
+    <form action="{% url 'limobooking:recordJourney' %}" method="POST">{% csrf_token %}
+      <table class="tableau" width="60%">
+        <tr>
+          <td align="left">Heure de départ: {{ departureTime }}  </td>
+          <td align="right"> Tarif: {{ prixCourse }} euros TTC</td>
+          <td align="right">
+            <button type="submit" class="btn btn-success">Je choisis cet horaire</button>
+          </td>
+        </tr>
+      </table>
+      <input type="hidden" name="departureTime" value="{{ departureTime }}">
+      <input type="hidden" name="prixCourse" value="{{ prixCourse }}">
+      <input type="hidden" name="destination" value="{{ destination }}">
+      <input type="hidden" name="departureDate" value='{{ departureDate|date:"Y-m-d" }}'>
+      <input type="hidden" name="sharing" value="{{ sharing }}">
+      <input type="hidden" name="firstname" value="{{ firstname }}">
+      <input type="hidden" name="lastname" value="{{ lastname }}">
+      <input type="hidden" name="email" value="{{ email }}">
+    </form>
+  <p style="color:yellow;">Les autres tarifs pour cette destination le même jour:</p>
+  {% for key, prixCourse in prices_dict.items %} <!-- Parcours de chaque valeur dans prices_dict -->
+    <form action="{% url 'limobooking:recordJourney' %}" method="POST">{% csrf_token %}
+      <table class="tableau" width="60%">
+        <tr>
+          <td align="left">Heure de départ: {{ key }}  </td>
+          <td align="right"> Tarif: {{ prixCourse }} euros TTC</td>
+          <td align="right">
+            <button type="submit" class="btn btn-success">Je choisis cet horaire</button>
+          </td>
+        </tr>
+      </table>
+      <input type="hidden" name="departureTime" value="{{ key }}">
+      <input type="hidden" name="prixCourse" value="{{ prixCourse }}">
+      <input type="hidden" name="destination" value="{{ destination }}">
+      <input type="hidden" name="departureDate" value='{{ departureDate|date:"Y-m-d" }}'>
+      <input type="hidden" name="sharing" value="{{ sharing }}">
+      <input type="hidden" name="firstname" value="{{ firstname }}">
+      <input type="hidden" name="lastname" value="{{ lastname }}">
+      <input type="hidden" name="email" value="{{ email }}">
+    </form>
+  {% endfor %}
+
+{% elif departureTime %} <!-- Aucun enregistrement en BDD pour cette date -->
+    <form action="{% url 'limobooking:recordJourney' %}" method="POST">{% csrf_token %}
+      <table class="tableau" width="60%">
+        <tr>
+          <td align="left">Heure de départ: {{ departureTime }}  </td>
+          <td align="right"> Tarif: {{ prixCourse }} euros TTC</td>
+          <td align="right">
+            <button type="submit" class="btn btn-success">Je choisis cet horaire</button>
+          </td>
+        </tr>
+      </table>
+      <input type="hidden" name="departureTime" value="{{ departureTime }}">
+      <input type="hidden" name="prixCourse" value="{{ prixCourse }}">
+      <input type="hidden" name="destination" value="{{ destination }}">
+      <input type="hidden" name="departureDate" value='{{ departureDate|date:"Y-m-d" }}'>
+      <input type="hidden" name="sharing" value="{{ sharing }}">
+      <input type="hidden" name="firstname" value="{{ firstname }}">
+      <input type="hidden" name="lastname" value="{{ lastname }}">
+      <input type="hidden" name="email" value="{{ email }}">
+    </form>
+{% endif %}
+  </div>
+{% endblock %}
+
+{% block js %}
+  <script src="{% static 'limobooking/assets/js/get_distance_time.js' %}"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ googleApiKey }}&callback=initMap"></script>
+{% endblock %}

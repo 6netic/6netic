@@ -1,0 +1,50 @@
+{% extends "limobooking/base.html" %}
+{% load static %}
+{% block wrapper %}
+  <table width="257" cellpadding="0" cellspacing="0" align="center">
+	<tr>
+	  <td>
+		<img src="{% static 'limobooking/assets/img/destinations_03.png' %}" alt="" width="257" height="75" align="left">
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<a href="{% url 'limobooking:aeroports' %}"><!-- aeroports_route -->
+		  <img src="{% static 'limobooking/assets/img/destinations_05.png' %}" alt="aeroports" width="257" height="102" align="left">
+		</a>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<a href="{% url 'limobooking:gares' %}"><!-- gares_route -->
+		  <img src="{% static 'limobooking/assets/img/destinations_06.png' %}" width="257" height="112" alt="gares" align="left">
+		</a>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<a href="{% url 'limobooking:otherDestination' %}"><!-- autre_route -->
+		  <img src="{% static 'limobooking/assets/img/destinations_07.png' %}" width="257" height="112" alt="autre" align="left">
+		</a>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<img src="{% static 'limobooking/assets/img/destinations_08.png' %}" width="257" height="132" alt="" align="left">
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<a href="{% url 'limobooking:index' %}"><!-- booking -->
+		  <img src="{% static 'limobooking/assets/img/destinations_09.png' %}" width="257" height="80" alt="retour" align="left">
+		</a>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<img src="{% static 'limobooking/assets/img/destinations_10.png' %}" width="257" height="104" alt="" align="left">
+	  </td>
+	</tr>
+	</table>
+
+{% endblock %}

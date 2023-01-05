@@ -1,0 +1,91 @@
+body {
+	background-color: #fefde6;
+	height: 100%;
+}
+#title {
+	font-family: Verdana, Helvetica, sans-serif;
+	font-size: 0.8em;
+	font-weight: bold;
+	color: #ffffff;
+}
+.ending {
+	height :40px;
+	width : 100%;
+	background-color: #343a40;
+	position : fixed;
+	bottom : 0px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-size: 0.7em;
+	color: #ffffff;
+}
+#box0 {
+	margin-top: 45px;
+}
+#box2 {
+	margin-bottom: 60px;
+}
+.question {
+	font-family: "Lucida Console", Courier, monospace;
+	font-style: italic;
+	font-size: 1em;
+	color: blue;
+}
+.robotresponse {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	color: #5f5f5f;
+}
+.address {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	font-weight: bold;
+	font-size: italic;
+	text-decoration: underline;
+	color: #5f5f5f;
+}
+iframe {
+	width: 80%;
+	height: 65%;
+	border: 1px solid  #bbbaba;
+}
+.bloc1 {
+	width: 60%;
+	background-color: #ffffff;
+	border: 1px solid #a9a9a9;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+#myForm {
+	padding-top: 5px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: #e4e4e4;
+	border: 1px solid #a9a9a9;
+	border-radius: 6px;
+	width: 60%;
+	font-size: 0.8em;
+}
+
+@media (min-width: 576px) {
+    #title {
+        font-size: 1.4em;
+    }
+    .ending {
+    	font-size: 0.8em;
+    }
+}
+
+@media (min-width: 768px) {
+    #title {
+        font-size: 1.7em;
+    }
+    .ending {
+    	font-size: 1em;
+    }
+}

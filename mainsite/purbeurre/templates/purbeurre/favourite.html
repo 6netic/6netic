@@ -1,0 +1,39 @@
+{% extends "purbeurre/base.html" %}
+{% load static %}
+{% block content %}
+
+
+        <section class="bg-result">
+            <div class="container">
+                <!-- <h3 class="text-center mt-0" style="color: white; padding-bottom: 3rem; font-weight: bold;">Mes Aliments favoris</h3><br /> -->
+                <h3 class="text-center mt-0" id="replprod">Mes Aliments favoris</h3><br /> 
+                <div class="row justify-content-center">
+                {% for favourite in favourite_list %}
+                    <div class="col-xs-6 text-center">
+                        <p>
+                            <a href="{% url 'purbeurre:detail' product_id=favourite.id %}">
+                                <img class="img-responsive cube" src="{{ favourite.url_pic }}" alt="">
+                            </a><br />
+{% if favourite.nutrition_grade == 'a' %}                            
+    <img class="nutri" src="{% static 'purbeurre/assets/img/portfolio/thumbnails/a.png' %}" alt="icone">{% endif %}
+{% if favourite.nutrition_grade == 'b' %}                            
+    <img class="nutri" src="{% static 'purbeurre/assets/img/portfolio/thumbnails/b.png' %}" alt="icone">{% endif %}
+{% if favourite.nutrition_grade == 'c' %}                            
+    <img class="nutri" src="{% static 'purbeurre/assets/img/portfolio/thumbnails/c.png' %}" alt="icone">{% endif %}
+{% if favourite.nutrition_grade == 'd' %}                            
+    <img class="nutri" src="{% static 'purbeurre/assets/img/portfolio/thumbnails/d.png' %}" alt="icone">{% endif %}
+{% if favourite.nutrition_grade == 'e' %}                            
+    <img class="nutri" src="{% static 'purbeurre/assets/img/portfolio/thumbnails/e.png' %}" alt="icone">{% endif %}
+
+                            <span style="color: white;">{{ favourite.name }}<br /></span><br />
+                                
+                        </p>   
+                            
+                    </div>
+                            
+                {% endfor %}                        
+                </div>
+            </div>
+        </section>
+        
+{% endblock %}

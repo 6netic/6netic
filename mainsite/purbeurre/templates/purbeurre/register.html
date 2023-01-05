@@ -1,0 +1,42 @@
+{% extends "purbeurre/base.html" %}
+{% load static %}
+{% block content %}
+
+
+        <section class="page-section bg-member" id="about">            
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <p><h1 class="text-white mt-0"><b>Créer un compte</b></h1><br /></p>                  
+                    {% if sending == 'ok' %}
+                        <p align="center" class="text-white">
+                            <strong>L'utilisateur {{ username }} a bien été enregistré. Merci.</strong>
+                        </p>                    
+                    {% else %}
+
+                    {% if sending == 'nok' %}
+                            <p align="center" style="color: red;">
+                                <strong>Choisissez une autre adresse email car celle-ci est déjà enregistrée.</strong>
+                            </p>
+                    {% endif %}  
+
+                        <div class="col-lg-8 text-center">
+                            <div align="right">
+                                <p>
+                                <form action="{% url 'purbeurre:register' %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="text-white">
+                                        {{ form.as_p }}
+                                    </div>
+                                    <input type="submit" value="Enregistrer" />
+                                </form>
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+              </div>
+            </div>
+        </section>
+        
+{% endblock %}

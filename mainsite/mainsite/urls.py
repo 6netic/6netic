@@ -26,5 +26,7 @@ urlpatterns = [
     path('ciblerie/', include('ciblerie.urls')),
     path('limobooking/', include('limobooking.urls')),
     path('purbeurre/', include('purbeurre.urls')),
+    path('grandpy/', include('grandpy.urls')),
+    path('hunting_quizz/', include('hunting_quizz.urls')),
     path('admin/', admin.site.urls),
 ]

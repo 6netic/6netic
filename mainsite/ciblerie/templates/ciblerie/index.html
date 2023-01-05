@@ -1,28 +1,31 @@
 {% extends "ciblerie/base.html" %}
 {% load static %}
 {% block wrapper %}
-
-  <section class="page-section" id="services">
-    <div class="container">
-      <div class="text-center"><br /><br />
-        <h3 class="section-subheading text-muted">Application Ciblerie</h3><br /><br />
-        <p>
-          Première phrase sur cette application.
-          <br /><br />
-        </p>
-
-
-
-          <br /><br />
-          truc muche
-      </div>
+  <div id="descript">
+    <h2>Calcul des points sur cible de 10 mètres</h2>
+      <p>Choisir l'image sur laquelle effectuer le calcul des points.</p>
+  </div>
+  <div id="message"></div>
+  <div id="formBlock">
+    <div id="formular">
+      <form id="myForm" name="myForm">{% csrf_token %}
+        <p><label><span style="font-size: 1.4rem;">Sélection de l'image</span></label></p>
+        <input type="file" name="srcfile" id="srcfile" accept="image/*">
+        <p><button type="submit">Calcul des points</button></p>
+      </form>
     </div>
-  </section>
-  <br /><br /><br /><br /><br />
-
+  </div>
+  <div id="picture"></div>
+  <div id="footer">
+    <p class="m-0 text-center text-white">
+      Eric Bresler - Source : https://github.com/6netic/shtarget.git
+    </p>
+  </div>
 {% endblock %}
 
-
+{% block js %}
+  <script src="{% static 'ciblerie/js/targetapp.js' %}"></script>
+{% endblock %}
 
 
 

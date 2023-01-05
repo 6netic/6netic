@@ -1,0 +1,56 @@
+{% extends "purbeurre/base.html" %}
+{% load static %}
+{% block content %}
+    
+    <section class="blackband">
+    {% if user.is_authenticated %}
+        <p class="nameprd">{{ user.username }}</p>
+    {% else %}   
+        <p class="nameprd">Espace membres</p>
+    {% endif %}
+    
+    </section>
+
+    <section class="bg-result">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    {% if user.is_authenticated %}
+                        <p><h6 style="color: white;">Email : <i>{{ user }}</i></h6></p>
+                        <p style="padding-top: 5rem;"><h5><a href="{% url 'purbeurre:modifypassword' %}">Modifier son mot de passe</a></h5></p>
+                        <p style="margin-top: 6rem;"><h5><a href="{% url 'purbeurre:disconnect' %}">Se déconnecter</a></h5></p>
+                    {% else %}
+                        <p><h5><a href="{% url 'purbeurre:connect' %}">Se connecter</a></h5></p>
+                        <p><h5><a href="{% url 'purbeurre:register' %}">Créer un compte</a></h5></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>    
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

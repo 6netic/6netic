@@ -1,0 +1,51 @@
+{% extends "purbeurre/base.html" %}
+{% load static %}
+{% block content %}
+
+
+    <section class="page-section bg-member" id="about">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <p><h1 class="text-white mt-0"><b>Page de connexion</b></h1><br /></p>
+                        {% if error %}
+                            <p align="center" style="color: red;">
+                                <strong>Utilisateur inconnu ou mauvais de mot de passe.</strong>
+                            </p>
+                        {% endif %}                    
+                        {% if user.is_authenticated %}
+                            <p align="center" class="text-white">
+                                <strong>Vous êtes connecté en tant que {{ user.username }} !</strong><br />
+                            </p>
+                        {% else %}                        
+                           <div class="col-lg-8 text-center">
+                               <div align="right">
+                                   <form action="{% url 'purbeurre:connect' %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="text-white">
+                                            {{ form.as_p }}
+                                        </div>
+                                        <input type="submit" value="Connexion" />
+                                        <input type="hidden" name="redirection" value="{{ redirection }}">
+                                    </form>
+                                </div>
+                            </div>              
+                        {% endif %}
+                </div>
+            </div>               
+        </div>
+    </section>       
+{% endblock %}
+<!--
+    <section class="page-section bg-member" id="about">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <p><h1 class="text-white mt-0"><b>Page de connexion</b></h1><br /></p>
+                    <p><h5><a href="{% url 'member:connect' %}">Se connecter</a></h5></p>
+                    <p><h5><a href="{% url 'member:register' %}">Créer un compte</a></h5></p>
+                </div>
+            </div>
+        </div>
+    </section>
+-->

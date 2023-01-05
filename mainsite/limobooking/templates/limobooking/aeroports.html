@@ -1,0 +1,49 @@
+{% extends 'limobooking/base.html' %}
+{% load static %}
+{% block wrapper %}
+  <table width="257" border="0" cellpadding="0" cellspacing="0" align="center">
+	<tr>
+      <td>
+        <img src="{% static 'limobooking/assets/img/aeroports_03.png' %}" width="257" height="75" alt="" align="left">
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<a href="{% url 'limobooking:displayJourney' destination='Aéroport de Paris-Orly (ORY), Orly, France' %}">
+		  <img src="{% static 'limobooking/assets/img/aeroports_05.png' %}" width="257" height="102" alt="Orly" align="left">
+		</a>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<a href="{% url 'limobooking:displayJourney' destination='Aéroport Paris Beauvais, Route de l\'Aéroport, Tillé, France' %}">
+		  <img src="{% static 'limobooking/assets/img/aeroports_06.png' %}" width="257" height="112" alt="Beauvais" align="left">
+		</a>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<a href="{% url 'limobooking:displayJourney' destination='Aéroport Charles-de-Gaulle (CDG), Roissy-en-France, France' %}">
+		  <img src="{% static 'limobooking/assets/img/aeroports_07.png' %}" width="257" height="112" alt="Charles De Gaulle" align="left">
+		</a>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<img src="{% static 'limobooking/assets/img/aeroports_08.png' %}" width="257" height="132" alt="" align="left">
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<a href="{% url 'limobooking:home' %}">
+		  <img src="{% static 'limobooking/assets/img/aeroports_09.png' %}" width="257" height="80" alt="retour" align="left">
+		</a>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    <img src="{% static 'limobooking/assets/img/aeroports_10.png' %}" width="257" height="104" alt="" align="left">
+	  </td>
+	</tr>
+</table>
+{% endblock %}

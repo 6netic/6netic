@@ -1,0 +1,56 @@
+{% extends "purbeurre/base.html" %}
+{% load static %}
+{% block content %}
+        
+<section class="blackband" style="background-image: url('{{ product_url_pic }}');">
+    <p class="nameprd">{{ product_name }}</p>
+</section>
+
+<section class="bg-result">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <p>
+                    <table border="0" width="100%">
+                        <tr>
+                            <td align="left"><h4>Nutriscore</h4></td>
+                            <td align="right"><h4>Repères nutritionnels pour 100g</h4></td>
+                        </tr>
+                        <tr>
+                            <td align="left">
+                                {% if product_nutrition_grade == 'a' %}
+                                    <img class="nutrilinefocus" src="{% static 'purbeurre/assets/img/nutri-a.png' %}" alt="nutriscore">
+                                {% endif %}
+                                {% if product_nutrition_grade == 'b' %}
+                                    <img class="nutrilinefocus" src="{% static 'purbeurre/assets/img/nutri-b.png' %}" alt="nutriscore">
+                                {% endif %}
+                                {% if product_nutrition_grade == 'c' %}
+                                    <img class="nutrilinefocus" src="{% static 'purbeurre/assets/img/nutri-c.png' %}" alt="nutriscore">
+                                {% endif %}
+                                {% if product_nutrition_grade == 'd' %}
+                                    <img class="nutrilinefocus" src="{% static 'purbeurre/assets/img/nutri-d.png' %}" alt="nutriscore">
+                                {% endif %}
+                                {% if product_nutrition_grade == 'e' %}
+                                    <img class="nutrilinefocus" src="{% static 'purbeurre/assets/img/nutri-e.png' %}" alt="nutriscore">
+                                {% endif %}
+                            </td>
+                            <td align="right">
+                                <b>Indice de gras : </b>{{ product_fat }}<br />
+                                <b>Indice de gras saturé : </b>{{ product_saturated_fat }}<br />
+                                <b>Indice en sucre : </b>{{ product_sugar }}<br />
+                                <b>Indice en sel : </b>{{ product_salt }}<br />
+                            </td>
+                        </tr>
+                    </table>
+                </p>
+                <p style="padding-top: 4rem;">
+                    <a href="{{ product_url }}">
+                        <span class="openfoodlink">Voir la fiche d'OpenFoodFacts</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+        
+{% endblock %}

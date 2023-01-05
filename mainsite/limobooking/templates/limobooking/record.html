@@ -1,0 +1,89 @@
+{% extends 'limobooking/base.html' %}
+{% load static %}
+{% block wrapper %}
+<p id="ligne1">Récapitulatif de la réservation</p>
+{% if message %}
+<p>
+  <table class="tableau" align="center">
+    <tr>
+	  <td class="espace1" align="right">Destination de la course : </td><td></td><td align="left">{{ destination }}</td>
+	</tr>
+	<tr>
+	  <td class="espace1" align="right">Date de départ : </td><td></td><td align="left">{{ departureDate }}</td>
+	</tr>
+	<tr>
+	  <td class="espace1" align="right">Heure du départ : </td><td></td><td align="left">{{ departureTime }}</td>
+	</tr>
+	<tr>
+	  <td class="espace1" align="right">Partage de la course : </td><td></td><td align="left">{{ sharing }}</td>
+	</tr>
+	<tr>
+	  <td class="espace1" align="right">Nom de famille : </td><td></td><td align="left">{{ lastname }}</td>
+	</tr>
+	<tr>
+	  <td class="espace1" align="right">Prénom : </td><td></td><td align="left">{{ firstname }}</td>
+	</tr>
+	<tr>
+	  <td class="espace1" align="right">Adresse email : </td><td></td><td align="left">{{ email }}</td>
+	</tr>
+    <tr>
+	  <td class="espace1" align="right">Prix de la course : </td><td></td><td align="left">{{ prixCourse }} euros TTC</td>
+	</tr>
+  </table>
+  <br><br>
+{% if messageOk %}
+  <div align="center" style="color: white; font-size: 1.5em;" >{{ messageOk }}</div>
+	<a href="{% url 'limobooking:index' %}"><button class="button1">Retour à l'Accueil</button></a>
+{% elif messageNok %}
+  <div align="center" style="color: red; font-size: 1.5em;" >{{ messageNok }}</div>
+  <form>
+    <input type="button" class="button1" value="Page précédente" onclick="history.go(-2)">
+  </form>
+{% endif %}
+<br /><br />
+{% else %}
+  <p>
+    <form action="{% url 'limobooking:recordJourney' %}" method="POST">
+  	{% csrf_token %}
+	<table class="tableau" align="center">
+	  <tr>
+	  	<td class="espace1" align="right">Destination de la course : </td><td></td><td align="left">{{ destination }}</td>
+	  </tr>
+	  <tr>
+	  	<td class="espace1" align="right">Date de départ : </td><td></td><td align="left">{{ departureDate }}</td>
+	  </tr>
+	  <tr>
+	  	<td class="espace1" align="right">Heure du départ : </td><td></td><td align="left">{{ departureTime }}</td>
+	  </tr>
+	  <tr>
+	  	<td class="espace1" align="right">Partage de la course : </td><td></td><td align="left">{{ sharing }}</td>
+	  </tr>
+	  <tr>
+	  	<td class="espace1" align="right">Nom de famille : </td><td></td><td align="left">{{ lastname }}</td>
+	  </tr>
+	  <tr>
+	  	<td class="espace1" align="right">Prénom : </td><td></td><td align="left">{{ firstname }}</td>
+	  </tr>
+	  <tr>
+	  	<td class="espace1" align="right">Adresse email : </td><td></td><td align="left">{{ email }}</td>
+	  </tr>
+      <tr>
+	  	<td class="espace1" align="right">Prix de la course : </td><td></td><td align="left">{{ prixCourse }} euros TTC</td>
+	  </tr>
+	  <tr>
+	  	<td></td><td></td><td align="right"><button type="submit" class="btn btn-success">Enregistrer ma réservation</button></td>
+	  </tr>
+	</table>
+	<input type="hidden" name="destination" value="{{ destination }}">
+    <input type="hidden" name="departureDate" value="{{ departureDate }}">
+    <input type="hidden" name="departureTime" value="{{ departureTime }}">
+    <input type="hidden" name="sharing" value="{{ sharing }}">
+    <input type="hidden" name="firstname" value="{{ firstname }}">
+    <input type="hidden" name="lastname" value="{{ lastname }}">
+    <input type="hidden" name="email" value="{{ email }}">
+    <input type="hidden" name="prixCourse" value="{{ prixCourse }}">
+    <input type="hidden" name="validation" value="ok">
+	</form>
+	<br><br>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "limobooking/base.html" %}
+
+{% load static %}
+
+{% block wrapper %}
+	<div class="formix">
+			<p id='ligne1'>Réservations - LimoSquare</p>
+	      	<a href="{% url 'limobooking:home' %}">
+	      	<button type="submit" class="noms_Passagers">Réserver une navette</button></a>
+	      	<span class="espace"></span>
+	      	<a href="{% url 'limobooking:cancelJourney' %}">
+	      	<button type="submit" class="noms_Passagers">Annuler une réservation</button></a>
+	      		<br /><br />
+	      	</p>
+			<p id='ligne1'>Booking - LimoSquare</p>
+
+			<button type="submit" class="noms_Passagers">Book a shuttle</button>
+			<span class="espace"></span>
+	      	<button type="submit" class="noms_Passagers">Cancel a booking</button>
+	      		<br /><br />
+	</div>
+
+	<p id="affichError2"></p>
+{% endblock %}

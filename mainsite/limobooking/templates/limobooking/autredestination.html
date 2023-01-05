@@ -1,0 +1,23 @@
+{% extends 'limobooking/base.html' %}
+{% load static %}
+{% block wrapper %}
+<p id="ligne1">Choix d'une autre destination</p>
+  <form action="{% url 'limobooking:otherDestination' %}" method="GET">
+    <table class="tableau" align="center">
+	  <tr>
+	  	<td class="intitule" style="font-size: 2em;">Destination : </td>
+	  	<td>
+	  	  <input id="autocomplete" class="form-control"
+                 placeholder="Rechercher un lieu, une adresse..."
+                 type="text" autocomplete="off" size="80%" name="destination">
+        </td>
+		<td><button class="btn btn-success" type="submit">Suivant</button></td>
+	  </tr>
+	</table>
+  </form>
+<script src="{% static 'limobooking/assets/js/autocompl.js' %}"></script>
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key={{ googleApiKey }}&libraries=places&callback=activatePlacesSearch">
+</script>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'limobooking/base.html' %}
+{% load static %}
+{% block wrapper %}
+  <p id="ligne1">Annuler une réservation</p>
+  {% if first %}
+    <form action="{% url 'limobooking:cancelJourney' %}" method="GET">
+      <table align="center" class="tableau">
+  	    <tr>
+          <td>{{ form.departureDate.label }} {{ form.departureDate }}</td>
+          <td>{{ form.email.label }} {{ form.email }}</td>
+          <td valign="bottom"><button class="btn btn-success" type="submit">Rechercher</button></td>
+        </tr>
+      </table>
+    </form>
+    <br /><br />
+  {% endif %}
+  {% if cancel %}
+  <div align="center">
+    {% for c in cancel %}
+    <form action="{% url 'limobooking:cancelJourney' %}" method="POST">{% csrf_token %}
+      <table class="tableau" width="60%">
+        <tr>
+          <td align="left" colspan="3">Destination: {{ c.destination }}</td>
+        </tr>
+
+        <tr>
+          <td align="left">Date de départ: {{ c.departureDate }}</td>
+          <td align="left">Heure de départ: {{ c.departureTime }}</td>
+          <td align="left">Nom: {{ c.lastname }}</td>
+          <td align="left">Prénom: {{ c.firstname }}</td>
+        </tr>
+        <tr>
+          <td align="center" colspan="4">
+            <button type="submit" class="btn btn-success">Annuler la réservation</button>
+          </td>
+        </tr>
+
+      </table>
+      <input type="hidden" name="id" value="{{ c.id }}">
+    </form>
+  </div>
+    {% endfor %}
+  {% elif message %}
+  <p></p>
+  <div>
+    <form>
+	  <table class="tableau" width="60%" align="center">
+  	    <tr>
+  	  	  <td>Aucune réservation n'a été trouvée à cette date pour cet utilisateur</td>
+  	    </tr>
+  	    <tr>
+  		  <td>
+	        <input type="button" class="button1" value="Page précédente" onclick="history.go(-1)">
+	      </td>
+	    </tr>
+      </table>
+    </form>
+  </div>
+  {% elif delete %}
+  <p></p>
+  <div>
+  	<table class="tableau" width="60%" align="center">
+  	  <tr>
+  	  	<td>{{ messDel }}</td>
+  	  </tr>
+  	  <tr>
+  		<td>
+  		  <a href="{% url 'limobooking:index' %}"><input type="button" class="button1" value="Retour à l'Accueil"></a>
+	    </td>
+	  </tr>
+    </table>
+  </div>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'limobooking/base.html' %}
+{% load static %}
+{% block wrapper %}
+  <table width="258" border="0" cellpadding="0" cellspacing="0" align="center">
+	<tr>
+	  <td>
+		<img src="{% static 'limobooking/assets/img/gares_03.png' %}" alt="" width="258" height="66" align="left">
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<a href="{% url 'limobooking:displayJourney' destination='Gare du Nord, Rue de Dunkerque, Paris, France' %}">
+		  <img src="{% static 'limobooking/assets/img/gares_05.png' %}" width="258" height="92" alt="Gare du Nord" align="left">
+		</a>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<a href="{% url 'limobooking:displayJourney' destination='Gare De Lyon Paris, Place Louis-Armand, Paris, France' %}">
+		  <img src="{% static 'limobooking/assets/img/gares_06.png' %}" width="258" height="94" alt="Gare de Lyon" align="left">
+		</a>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<a href="{% url 'limobooking:displayJourney' destination='Gare Saint-Lazare, Rue d\'Amsterdam, Paris, France' %}">
+		  <img src="{% static 'limobooking/assets/img/gares_07.png' %}" width="258" height="94" alt="Gare Saint-Lazare" align="left">
+		</a>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<a href="{% url 'limobooking:displayJourney' destination='Gare Montparnasse, Boulevard de Vaugirard, Paris, France' %}">
+		  <img src="{% static 'limobooking/assets/img/gares_08.png' %}" width="258" height="95" alt="Gare Montparnasse" align="left">
+		</a>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<img src="{% static 'limobooking/assets/img/gares_09.png' %}" width="258" height="110" alt="" align="left">
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<a href="{% url 'limobooking:home' %}">
+		  <img src="{% static 'limobooking/assets/img/gares_10.png' %}" width="258" height="75" alt="retour" align="left">
+		</a>
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+		<img src="{% static 'limobooking/assets/img/gares_11.png' %}" width="258" height="108" alt="" align="left">
+	  </td>
+	</tr>
+  </table>
+{% endblock %}

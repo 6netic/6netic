@@ -1,0 +1,178 @@
+body {
+	background-color: #75B300;
+}
+#wrapper {
+	margin: auto; width: 80%; border-color: white; border-width: 4px;
+	border-style: solid; padding: 0; border-radius: 15px; text-align: center;
+}
+#ligne1 {
+	font-family: 'RouteSoleil'; font-size: 3em; text-align: center;
+	background-color: #95e600; color: black; border-bottom-color: #c9ff66;
+	border-bottom-width: 2px; border-bottom-style: solid; margin-top: 2px;
+	border-radius: 8px 8px 0 0;
+}
+.intitule {
+	font-family: 'RouteSoleil'; font-size: 2em; color: black;
+}
+.ligne2 {
+	font-size: 1em; text-align: center; color: black;
+}
+.tableau {
+	font-size: 1.2em; color: white;
+}
+.tableau td {
+	padding: 0.6em;
+	font-size: 0.8em;
+}
+.lignePassager {
+	padding-top: 15px; padding-bottom: 15px; background-color: #85cc00;
+}
+#listePassagers {
+	margin: auto ; font-family: 'RouteSoleil'; font-size: 2em; padding-bottom: 10px;
+}
+.ligneUser {
+	font-family: 'RouteSoleil'; font-size: 1.2em; border-radius: 0px; color:
+	grey; border-color: grey; text-align: center;
+}
+#formulaire1 {
+	margin: auto ; font-family: 'RouteSoleil'; font-size: 2em;
+}
+.formix {
+	margin: auto ; font-family: 'RouteSoleil'; font-size: 1em;
+}
+.selectHeure {
+	font-family: 'RouteSoleil'; font-size: 2em; border-radius: 6px;
+	border-style: solid; border-color: green; color: green;
+	border-width: 2px; text-align: center;
+}
+#selectMinutes {
+	font-family: 'RouteSoleil'; font-size: 1.2em; border-radius: 10px;
+	border-style: solid; border-color: green; color: green;
+	border-width: 2px; text-align: center;
+}
+#selectPassagers {
+	font-family: 'RouteSoleil'; font-size: 1.2em; border-radius: 10px;
+	border-style: solid; border-color: green; color: green;
+	border-width: 2px; text-align: center;
+}
+.date {
+	font-family: 'RouteSoleil'; font-size: 1.2em; border-radius: 10px;
+	border-style: solid; border-color: green; color: green;
+	border-width: 2px; text-align: center; }
+.coordUser {
+	font-family: 'RouteSoleil'; font-size: 1.2em; border-radius: 0px;
+	color: green; border: none; text-align: center;
+	box-shadow: 2px 2px 8px #0f3d0f;
+}
+.noms_Passagers {
+	font-family: 'RouteSoleil'; font-size: 2em; border-radius: 10px;
+	border-style: solid; border-color: green; color: green;
+	border-width: 2px; text-align: center; margin-top: 30px; margin-bottom: 30px;
+}
+#nomsPassagers {
+	font-family: 'RouteSoleil'; font-size: 1em; border: none;
+}
+#boutonTarif {
+	height: 50px; width: 190px; padding-bottom: 20px;
+}
+.espace {
+	padding-left: 100px;
+}
+.espace1 {
+	padding-left: 40px;
+}
+.espace2 {
+	padding-left: 20px;
+}
+#affichError1 {
+	color: red; font-weight: bold;
+}
+#affichError2 {
+	color: red; padding-bottom: 10px; margin: auto ;
+	font-family: 'RouteSoleil'; font-size: 2em;
+}
+#tarification {   }
+#paiement {
+	background-color: #85cc00;
+}
+#boutonValiderPaiement {
+	margin-left: 70%
+}
+#boutonDisplayPrice {
+	font-family: 'RouteSoleil'; font-size: 2em; border-radius: 10px;
+	border-style: solid; border-color: green; color: green;
+	border-width: 2px; text-align: center;
+}
+@font-face {
+	font-family: 'RouteSoleil';
+	src: url('Route Du Soleil.otf');  format('otf');
+}
+#container {
+	position: absolute;
+	margin: auto;
+	z-index: 1;
+}
+#dateSel {
+	font-family: 'RouteSoleil'; font-size: 1.2em; border-radius: 35px;
+	border-style: solid; border-color: green; color: green;
+	border-width: 2px; text-align: center;
+}
+input[type="submit"] {
+	position: absolute; z-index: 1; margin-left: 900px;
+	margin-top: 600px; font-family: 'RouteSoleil'; font-size: 4em;
+	background-color: #75B300; border-color: black; border-style: dashed;
+	border-radius: 3px; width: 300px;
+}
+.buttonPerso {
+    background-color: none;
+    border-radius: 10px; border-style: solid; border-color: green; border-width: 2px;
+    color: green;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: 'RouteSoleil';
+    font-size: 1em;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button1 {
+    background-color: #d9d9d9;
+    border-radius: 10px;
+    border-style: solid; border-color: green; border-width: 2px;
+    color: green;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: 'RouteSoleil';
+    font-size: 2em;
+    margin: 2em 2em;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button1:hover {
+    background-color: yellow;
+}
+#paragConfirmation {
+	margin-left: 10%; margin-right: 10%; margin-top: 20px;
+	font-family: 'RouteSoleil'; font-size: 3em; text-align: center;
+}
+
+/* #adrParis { position: relative; z-index: 1; margin-top: 70px;  margin: auto; font-family: 'RouteSoleil'; font-size: 0.6em; border-radius: 35px; border-style: solid; border-color: green; color: green; border-width: 2px;} */
+#adrParis {
+	margin-top: 90px; font-family: 'RouteSoleil'; font-size: 2em;
+	border-radius: 35px; border-style: solid; border-color: green;
+	color: green; border-width: 2px;
+}
+.lTableau {
+	font-family: 'RouteSoleil'; font-size: 2.5em; text-align: center;
+}
+
+
+
+
+
+

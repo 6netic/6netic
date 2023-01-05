@@ -9,7 +9,7 @@
     <div class="row">
       <header class="section-header wow fadeInUp">
         <p>Liste des projets réalisés à ce jour.<br>
-           Le langage utilisé est uniquement Python et les frameworks, Django et Flask.<br>
+           Le langage utilisé est Python et le framework, Django.<br>
            Les bases de données utilisent PostgreSql.<br>
         </p>
       </header>
@@ -72,7 +72,7 @@
             </td>
             <td>Flask</td>
             <td><a href="https://github.com/6netic/GrandPy" target="_blank">Dépôt</a></td>
-            <td><a href="https://grandpy-ebres.herokuapp.com" target="_blank">Site</a></td>
+            <td><a href="{% url 'grandpy:index' %}" target="_blank">Site</a></td>
             <td>Cette application web est hébergée sur Héroku. Vous entrez une adresse dans le champ de recherche
                 et si une réponse est trouvée sur MediaWiki alors ce lieu est affiché dans une carte et une courte
                 description est affichée.</td>
@@ -126,7 +126,7 @@
             </td>
             <td>Django</td>
             <td><a href="https://github.com/6netic/limobooking" target="_blank">Dépôt</a></td>
-            <td><a href="#" target="_blank">Site</a></td>
+            <td><a href="{% url 'limobooking:index' %}" target="_blank">Site</a></td>
             <td>La maquette a été réalisée en fonction du cahier des charges.<br />
                 Le lieu de départ est invariable et le tarif varie en fonction de la distance, du jour et de l'heure.
             </td>
@@ -162,7 +162,7 @@
             </td>
             <td>Django</td>
             <td><a href="https://github.com/6netic/dixpb" target="_blank">Dépôt</a></td>
-            <td><a href="#" target="_blank">Site</a></td>
+            <td><a href="{% url 'purbeurre:index' %}" target="_blank">Site</a></td>
             <td>Site qui propose des produits plus sains que celui que vous entrez.<br />
                 La base de données alimentaire provient d'OpenFoodFacts via son API.<br />
                 Vous pouvez créer un compte et sauvegarder vos aliments préférés.
@@ -202,7 +202,7 @@
                 </td>
                 <td>Flask</td>
                 <td><a href="https://github.com/6netic/shtarget" target="_blank">Dépôt</a></td>
-                <td><a href="https://target-ebres.herokuapp.com/" target="_blank">Site</a></td>
+                <td><a href="{% url 'ciblerie:index' %}" target="_blank">Site</a></td>
                 <td> - </td>
           </tr>
         </tbody>
