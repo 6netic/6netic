@@ -1,0 +1,14 @@
+{% extends 'hunting_quizz/base.html' %}
+{% load static %}
+{% block wrapper %}
+
+{% include 'hunting_quizz/normal_part.html' %}
+
+{% endblock %}
+
+{% block js %}
+  <script src="{% static 'hunting_quizz/js/calculate_time.js' %}"></script>
+  <script src="{% static 'hunting_quizz/js/normal.js' %}"></script>
+{% endblock %}
+
+

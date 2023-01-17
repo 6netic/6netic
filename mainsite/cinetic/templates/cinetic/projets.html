@@ -44,20 +44,7 @@
             </td>
           </tr>
           <!-- Projet 2 : CompuVision -->
-          <tr>
-            <td>CompuVision</td>
-            <td>
-              <div class="popup" onclick="showDescription('compuvision')">Afficher
-                <span class="popuptext" id="compuvision">
-                En cour de construction.<br />
-                </span>
-              </div>
-            </td>
-            <td>Flask</td>
-            <td><a href="#" target="_blank">Dépôt</a></td>
-            <td><a href="#" target="_blank">Site</a></td>
-            <td>En cours de construction. Ne fonctionne pas sur Firefox !</td>
-          </tr>
+
           <!-- Projet 3 : GrandPy -->
           <tr>
             <td>GrandPy</td>
@@ -89,7 +76,7 @@
             </td>
             <td>Django</td>
             <td><a href="#" target="_self">Dépôt</a></td>
-            <td><a href="#" target="_self">Site</a></td>
+            <td><a href="{% url 'hunting_quizz:index' %}" target="_blank">Site</a></td>
             <td>En cours de construction.</td>
           </tr>
           <!-- Projet 5 : l'orchidee -->
@@ -162,7 +149,7 @@
             </td>
             <td>Django</td>
             <td><a href="https://github.com/6netic/dixpb" target="_blank">Dépôt</a></td>
-            <td><a href="{% url 'purbeurre:index' %}" target="_blank">Site</a></td>
+            <td><a href="#" target="_self">Site</a></td>
             <td>Site qui propose des produits plus sains que celui que vous entrez.<br />
                 La base de données alimentaire provient d'OpenFoodFacts via son API.<br />
                 Vous pouvez créer un compte et sauvegarder vos aliments préférés.

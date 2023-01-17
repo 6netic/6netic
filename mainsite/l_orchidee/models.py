@@ -38,6 +38,9 @@ class Tour(models.Model):
         managed = True
         db_table = 'tour'
 
+    def __str__(self):
+        return self.jour
+
 
 class PlanningModel(models.Model):
     """ Fields for PlanningModel Table """
@@ -50,7 +53,8 @@ class PlanningModel(models.Model):
         managed = True
         db_table = 'planningmodel'
 
-
+    def __str__(self):
+        return self.dateTour
 
 
 

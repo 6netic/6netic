@@ -70,7 +70,7 @@ def selectJourney(request):
 
     googleApiKey = os.getenv("GOOGLE_API_KEY")
     if request.method == 'POST':
-        # User has selected the destination, date, time, sharing and his personal informations
+        # User has selected the destination, date, time, sharing and personal information
         form = ReservationForm(request.POST)
         if form.is_valid():
             hour = form.cleaned_data['hour']
@@ -87,7 +87,7 @@ def selectJourney(request):
             prixCourse, departureDate, sharing = compute.calculate_individual_price()
             # Looking for other bookings
             try:
-                bookings_in_base = Booking.objects.using('limo').filter(departureDate__exact=departureDate)\
+                bookings_in_base = Booking.objects.using('limobooking').filter(departureDate__exact=departureDate)\
                     .filter(sharing__exact=sharing).filter(destination__exact=destination)
                 if bookings_in_base:
                     prices_dict = compute.compute_grouped_price(bookings_in_base)
@@ -113,7 +113,7 @@ def recordJourney(request):
         # Register booking into database
         if request.POST.get("validation"):
             try:
-                newBooking = Booking.objects.using('limo').create(
+                newBooking = Booking.objects.using('limobooking').create(
                     destination=destination,
                     departureDate=departureDate,
                     departureTime=departureTime,
@@ -140,7 +140,7 @@ def cancelJourney(request):
             email = request.GET.get("email")
             departureDate = request.GET.get("departureDate")
             try:
-                cancel = Booking.objects.using('limo').filter(email__contains=email)\
+                cancel = Booking.objects.using('limobooking').filter(email__contains=email)\
                                 .filter(departureDate=departureDate)
                 if cancel:
                     return render(request, "limobooking/cancel.html", locals())
@@ -156,7 +156,7 @@ def cancelJourney(request):
     if request.method == 'POST':
         id = request.POST.get("id")
         try:
-            delete = Booking.objects.using('limo').filter(pk=id).delete()
+            delete = Booking.objects.using('limobooking').filter(pk=id).delete()
             messDel = "La réservation a bien été annulée. Merci de votre confiance."
         except:
             pass

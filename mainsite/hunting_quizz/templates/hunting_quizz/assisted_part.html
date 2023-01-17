@@ -1,0 +1,53 @@
+{% load static %}
+
+<div class="container">
+  <p id="infos">
+    <span id="right">Question {{current_question_nb}} sur {{nb_of_questions}}</span>
+  </p>
+  <form>{% csrf_token %}
+    <div class="custom">
+{% for one in questions %}
+  {% if forloop.first %}
+      <div class="row rectangle">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" align="center">
+          <img src="{{ one.imgdir }}{{ picture_id }}.jpg">
+        </div>
+        <div class="col-md-6 col-lg-7">
+          <p class="question" align="center">{{ one.question }}</p>
+          <div class="optionframe" align="center">
+            <p align="left">
+              <input type="radio" id="choice1" name="options" value="{{ one.choice1 }}">
+              <label for="choice1">{{ one.choice1 }}</label>
+            </p>
+            <p align="left">
+              <input type="radio" name="options" id="choice2" value="{{ one.choice2 }}">
+              <label for="choice2">{{ one.choice2 }}</label>
+            </p>
+    {% if one.choice3 %}
+            <p align="left">
+              <input type="radio" name="options" id="choice3" value="{{ one.choice3 }}">
+              <label for="choice3">{{ one.choice3 }}</label>
+            </p>
+    {% endif %}
+          </div>
+          <p></p><p></p>
+          <p id="valid" align="center">
+            <button class="btn btn-success validateBtn">Je valide</button>
+          </p>
+        </div>
+        <input type="hidden" name="question_id" value="{{ one.id }}">
+        <input type="hidden" name="current_question_nb" value="{{ current_question_nb }}">
+        <input type="hidden" name="nb_of_questions" value="{{ nb_of_questions }}">
+        <input type="hidden" name="ids_list" value="{{ ids_list }}">
+        <input type="hidden" name="current_time" id="current_time" value="{{time_spent}}">
+        <input type="hidden" name="score" id="score" value="{{score}}">
+  {% endif %}
+{% endfor %}
+      </div>
+    </div>
+  </form>
+  <p id="formtag" align="center"></p>
+  <p id="status" align="center"></p>
+  <p id="verify" align="center"></p>
+  <br><br><br>
+</div>

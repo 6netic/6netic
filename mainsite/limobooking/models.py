@@ -14,5 +14,8 @@ class Booking(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'booking'
+        db_table = 'limobooking'
         unique_together = ('destination', 'departureDate', 'email')
+
+    def __str__(self):
+        return self.departureDate, self.departureTime

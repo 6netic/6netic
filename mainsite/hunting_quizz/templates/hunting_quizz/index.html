@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'hunting_quizz/base.html' %}
+{% load static %}
+{% block wrapper %}
 
-</body>
-</html>
+<div align="center">
+  <p>&nbsp;</p>
+  <h1>Quizz sur le permis de chasse</h1>
+    <p>&nbsp;</p>
+    <p class="presentation">
+      Ce site a pour objet de vous entraîner au permis de chasse.<br>
+      Il comporte pour le moment 89 questions.<br>
+      2 modes sont possibles :<br>
+      - Le quizz assisté qui affiche la réponse à chaque question et ajoute les explications<br>
+      - Le quizz normal qui ajoute un chronomètre.<br>
+      - Apprentissage qui présente un résumé de ce qu'il faut connaître<br>
+    </p><br><br>
+    <p class="presentation">
+        Le site étant en construction, j'ai limité le nombre de questions aléatoires à 3.
+        Il sera très bientôt terminé.
+    </p>
+
+{% endblock %}
+
+
+
+</div>

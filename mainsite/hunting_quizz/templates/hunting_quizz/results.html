@@ -1,0 +1,20 @@
+{% extends 'hunting_quizz/base.html' %}
+{% load static %}
+{% block wrapper %}
+<div class="container ">
+  <p></p>
+    <h2 align="center">LES RESULTATS</h2>
+
+
+  <div id="results">
+    <p>Score : {{score}} / {{nb_of_questions}}</p>
+    <p>Pourcentage : {{percent}}%</p>
+{% if time_spent %}
+    <p>Temps passé : {{time_spent}} secondes</p>
+{% endif %}
+    <p>Réponses correctes : {{score}}</p>
+    <p>Mauvaises réponses : {{wrong}}</p>
+    <p>Nombre de questions : {{nb_of_questions}}</p>
+  </div>
+</div>
+{% endblock %}

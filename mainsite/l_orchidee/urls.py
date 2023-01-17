@@ -1,10 +1,12 @@
 from django.urls import path
 from . import views
+from django.contrib import admin
 
 
 app_name = 'l_orchidee'
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('index', views.index, name='index'),
     path('display_form', views.display_form, name='display_form'),

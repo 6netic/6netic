@@ -1,0 +1,14 @@
+{% extends 'hunting_quizz/base.html' %}
+{% load static %}
+{% block wrapper %}
+
+{% include 'hunting_quizz/assisted_part.html' %}
+
+{% endblock %}
+
+{% block js %}
+  <script src="{% static 'hunting_quizz/js/assisted.js' %}"></script>
+  <script src="{% static 'hunting_quizz/js/button_next.js' %}"></script>
+{% endblock %}
+
+
