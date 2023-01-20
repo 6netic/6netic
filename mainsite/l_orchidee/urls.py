@@ -23,4 +23,5 @@ urlpatterns = [
     path('connect', views.connect, name='connect'),
     path('disconnect', views.disconnect, name='disconnect'),
     path('modifyPassword', views.modifyPassword, name='modifyPassword'),
+    path('clean_db', views.clean_db, name="clean_db"),
 ]

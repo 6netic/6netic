@@ -8,45 +8,81 @@
         <table align="center">
           <tr>
             <td align="left">
-              L'application vous permet pour le moment d'insérer et de visualiser les tournées quotidiennes.<br />
-              Comment procéder ?
-            </td>
-          </tr>
-          <tr>
-            <td align="left">1- Enregistrer les tournées au format PDF dans l'application 'Simply Vitale' sur
-                votre ordinateur.
-            </td>
-          </tr>
-          <tr>
-            <td align="left">2- Insérer les 2 fichiers de la tournée via <strong>Tournées > Insérer Tournée</strong><br />
-              Sélectionner le nom de la collaboratrice en charge pour chacune des deux tournées.<br />
-              Choisir le fichier PDF correspondant à la tournée.<br /><br />
-            </td>
-          </tr>
-          <tr>
-            <td align="left">La visualisation des tournées s'effectue dans <strong>Tournées > Voir Tournées</strong><br />
-              On choisit la date souhaitée pour la tournée.<br />
-              Vous pourrez ajouter des commentaires pour chaque visite planifiée.<br />
-              Une fois qu'une visite est réalisée, cliquer sur le bouton 'Fait' de la ligne qui correspond à
-              cette dernière.<br />
-              Il ne sera ensuite plus possible d'ajouter ou de modifier le commentaire de la ligne.<br /><br />
+              Cette application est destinée à faciliter le travail d'un cabinet d'infirmières libérales.<br>
+              Elle permet de visualiser son planning des tournées en ligne, de modifier chaque ligne
+              (correspondant à une visite de patient-e) et de valider la fin d'une visite.<br>
+              La seconde fonction est de pouvoir effectuer et visualiser le planning des tournées (visites)
+              pour chacun-e des collaborateurs-trices.<br><br>
             </td>
           </tr>
           <tr>
             <td align="left">
-              Le planning des collaboratrices peut être visualisé dans le menu <strong>Planning > Voir Planning</strong><br />
+              Afin de préparer les tournées (les visites des patients), elle utilisent une application (Simply Vitale)
+              fournie par la Sécutité Sociale, à partir de laquelle elle extraient un planning des visites (au format PDF).<br>
+              Il est d'usage d'imprimer ces fichiers et de travailler à partir de ces feuilles A4 imprimées.<br><br>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">
+              Mais pour gagner un temps précieux, j'ai conçu cette application qui va prendre ce-s fichier-s PDF
+              enregistré-s sur la tablette (au lieu de les imprimer), va reconnaître chaque ligne
+              (grâce à la reconnaissance visuelle et OCR) et ainsi créer un tableau de ce qui figure dans ce-s fichier-s PDF.<br>
+              Ainsi, sur le terrain et à partir d'un smartphone, il sera possible de visualiser la tournée générale,
+              d'ajouter des commentaires et de valider chacune des visites (durant la tournée).<br><br>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">
+              A titre de démonstration, je n'ai pas intégré la gestion de comptes (permettant de sécuriser le site) et
+              pour aussi gagner du temps.<br><br>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">
+              Comment cela fonctionne ?<br>
+              Tout d'abord, on s'assure, pour la démonstration (j'entends bien) de nettoyer la base de données en
+              cliquant sur le lien suivant :<br><br>
+              <a href="{% url 'l_orchidee:clean_db' %}">Nettoyer les bases de données</a><br><br>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">
+              On récupère ensuite les fichiers PDF de la tournée du jour en question.<br>
+              Pour l'exemple, j'ai créé ces 2 fichiers (avec des données fictives) qui sont à télécharger :
+              <a href="{% static 'l_orchidee/examples/pref_230223.pdf' %}" target="_blank">pref_220323.pdf</a> et
+              <a href="{% static 'l_orchidee/examples/vill_230223.pdf' %}" target="_blank">vill_230223.pdf</a><br><br>
+              On se rend ensuite dans le menu <strong>(Tournées > Insérer Tournée)</strong><br>
+              Pour ce cabinet, on suppose que 2 tournées par jour sont effectuées et que le cabinet est composé de
+              4 infirmières (Infirmière 1, 2, 3, et 4).<br>
+              On rentre la date de la tournée en question (pour cet exemple, la date est le 23 Février 2023).<br>
+              Pour la tournée1 (nommée Préfecture), on sélectionne l'infirmière en charge et on sélectionne le fichier
+              <u>pref_220223.pdf</u> précédemment enregistré sur la tablette.<br>
+              On procède de la même façon pour la seconde tournée (nommée Le Village) en sélectionnant
+              le fichier <u>vill_230223.pdf</u> à importer.<br>
+              Il reste alors à cliquer sur 'Enregistrer' et au bout d'un petit moment (la reconnaissance OCR n'est
+              pas instantanée), les tournées sont enregistrées en base de données.<br>
+              Il ne reste plus qu'à visualiser ces tournées en se rendant dans le menu <strong>(Tournées > Voir Tournées)</strong>,
+              à sélectionner le jour en question (23/02/2023) et les deux tournées apparaissent.<br>
+              On pourra alors ajouter des commentaires et valider chaque visite effectuée.<br><br>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">
+              Concernant le planning et pour organiser une nouvelle journée, il faudra se rendre
+              dans le menu <strong>(Planning > Insérer Planning)</strong>.<br>
+              On choisit la date souhaitée, le nom de l'infirmière pour chacune des 2 tournées, puis clic sur le bouton 'Ajouter'.<br>
+              L'option 'Forcer l'enregistrement' permet de réenregistrer ce jour dans le cas d'un besoin de modification
+              du planning (ce qui arrive parfois !).<br>
+              Pour visualier ensuite le planning, on se rend dans le menu <strong>(Planning > Voir Planning)</strong>
+              et on navigue d'un mois à l'autre dans le calendrier.<br><br>
             </td>
           </tr>
 
-
         </table>
-        <p>
-          <br />
-        </p>
 
       </div>
     </div>
   </section>
-  <br /><br /><br /><br /><br />
+  <br><br>
 
 {% endblock %}

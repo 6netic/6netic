@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth.models import User
 
 
 class MemberForm(forms.Form):
@@ -28,8 +27,8 @@ class MemberForm(forms.Form):
 class ConnectionForm(forms.Form):
     """ This class creates a form to authenticate a user """
 
-    email = forms.CharField(
-        label="Adresse Email",
+    username = forms.CharField(
+        label="Nom Utilisateur",
         widget=forms.TextInput
     )
     password = forms.CharField(

@@ -11,10 +11,10 @@ class Command(BaseCommand):
         """ Liste des infirmières """
 
         nurse_list = [
-            ["Ramata Samake", "Ramata", "0652226124", "samakeramata@hotmail.fr", "12 Chemin des Pipeaux, 95800 Cergy"],
-            ["Amaria Ghernoug", "Amaria","0646523475", "amaria48@hotmail.fr", "Adresse inconnue"],
-            ["Béatrice Wabel", "Béatrice", "0603792129", "wablebeatrice@yahoo.fr", "Adresse inconnue"],
-            ["Sonia Roubehi", "Sonia","0783451675", "s.roubehi@yahoo.fr", "Adresse inconnue"]
+            ["Infirmière 1", "Inf-1", "0601010101", "inf1@gmail.com", "Adresse inconnue"],
+            ["Infirmière 2", "Inf-2", "0601010102", "inf2@gmail.com", "Adresse inconnue"],
+            ["Infirmière 3", "Inf-3", "0601010103", "inf3@gmail.com", "Adresse inconnue"],
+            ["Infirmière 4", "Inf-4", "0601010104", "inf4@gmail.com", "Adresse inconnue"]
         ]
         try:
             for line in nurse_list:

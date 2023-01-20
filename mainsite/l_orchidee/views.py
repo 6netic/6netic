@@ -18,17 +18,26 @@ from datetime import datetime, timedelta, date
 from dateutil.relativedelta import relativedelta
 
 
+def clean_db(request):
+    """ Clears all databases """
+
+    Tour.objects.using('lorchidee').all().delete()
+    PlanningModel.objects.using('lorchidee').all().delete()
+    return redirect(reverse('l_orchidee:index'))
+
+
 def index(request):
     """ Index page accessible only if logged in """
 
-    if request.user.is_authenticated:
-        return render(request, "l_orchidee/index.html")
-    else:
-        return redirect(reverse('l_orchidee:connect'))
+    # if request.user.is_authenticated:
+    #     return render(request, "l_orchidee/index.html")
+    # else:
+    #     return redirect(reverse('l_orchidee:connect'))
+    return render(request, "l_orchidee/index.html")
 
 ##########################   Tour Section   ####################################
 
-@login_required
+# @login_required
 def display_form(request):
     """ Inserts 2 tours for a specific date  """
 
@@ -37,7 +46,7 @@ def display_form(request):
     return render(request, 'l_orchidee/display_form.html', context=context)
 
 
-@login_required
+# @login_required
 def check_variables(request):
     """ Checks whether all variables are correct """
 
@@ -60,7 +69,7 @@ def check_variables(request):
         return render(request, "l_orchidee/display_detailed_form.html", context={'converted': message})
 
 
-@login_required
+# @login_required
 def extract_in_pref(request):
     """ Extracts in prefecture folder """
 
@@ -81,7 +90,7 @@ def extract_in_pref(request):
     return render(request, "l_orchidee/display_detailed_form.html", context={'pref_extracted': message})
 
 
-@login_required
+# @login_required
 def extract_in_vill(request):
     """ Extracts in village folder """
 
@@ -102,7 +111,7 @@ def extract_in_vill(request):
     return render(request, "l_orchidee/display_detailed_form.html", context={'vill_extracted': message})
 
 
-@login_required
+# @login_required
 def check_date_and_is_registered(request):
     """ Checks validity of date and if tour is already in the database """
 
@@ -123,7 +132,7 @@ def check_date_and_is_registered(request):
         return render(request, "l_orchidee/display_detailed_form.html", context={'recording_status': message})
 
 
-@login_required
+# @login_required
 def insert_tour(request):
     """ Inserts datas into the database """
 
@@ -145,7 +154,7 @@ def insert_tour(request):
     return render(request, "l_orchidee/display_detailed_form.html", context={'recorded': message})
 
 
-@login_required
+# @login_required
 def display_tour(request):
     """ Displays a tour for a selected date """
 
@@ -171,7 +180,7 @@ def display_tour(request):
     return render(request, "l_orchidee/display_tour.html", context={'calendar': True})
 
 
-@login_required
+# @login_required
 def save_comment(request):
     """ Saves a comment for a specific line """
 
@@ -187,7 +196,7 @@ def save_comment(request):
             return JsonResponse(status=230, data={'message': "Not Ok"})
 
 
-@login_required
+# @login_required
 def validate_line(request):
     """ Validates selected line """
 
@@ -267,7 +276,7 @@ def get_next_month(date_object):
     return year, month
 
 
-@login_required
+# @login_required
 def insert_planning(request):
     """ Inserts a new tour for one day from the calendar """
 
@@ -319,7 +328,7 @@ def connect(request):
     return render(request, 'l_orchidee/viewConnect.html', locals())
 
 
-@login_required
+# @login_required
 def disconnect(request):
     """ Disconnects a user to the system """
 
@@ -328,7 +337,7 @@ def disconnect(request):
     return render(request, "l_orchidee/viewConnect.html", locals())
 
 
-@login_required
+# @login_required
 def modifyPassword(request):
     """ Modifies user's password """
 

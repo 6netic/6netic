@@ -3,76 +3,73 @@
 {% block content %}
 
 {% if search_prd %}
-        <section class="blackband" style="background-image: url('{{ search_prd.url_pic }}');">
-            <p class="nameprd">{{ search_prd.name }}</p>
-        </section>
-        <div id="popup-response" style="display: none;">
-            <div id="popup"> 
-                <p class="text-center w-50 mt-5"></p>
-            </div>
-        </div>
-
-        <section class="bg-result">
-            <div class="container">
-                <h4 class="text-center mt-0" id="replprod">Vous pouvez remplacer cet aliment par :</h4><br /> 
-                    <div class="row justify-content-center">                                          
-                    {% for best_prd in best_prds %}
-                        <div class="col-xs-6 text-center">
-                            <p>
-                                <a href="{% url 'purbeurre:detail' product_id=best_prd.id %}">
-                                    <img class="img-responsive cube" src="{{ best_prd.url_pic }}" alt="">
-                                </a><br />
+  <section class="blackband" style="background-image: url('{{ search_prd.url_pic }}');">
+    <p class="nameprd">{{ search_prd.name }}</p>
+  </section>
+  <div id="popup-response" style="display: none;">
+    <div id="popup">
+      <p class="text-center w-50 mt-5"></p>
+    </div>
+  </div>
+  <section class="bg-result">
+    <div class="container">
+      <h4 class="text-center mt-0" id="replprod">Vous pouvez remplacer cet aliment par :</h4><br />
+        <div class="row justify-content-center">
+  {% for best_prd in best_prds %}
+          <div class="col-xs-6 text-center">
+            <p>
+              <a href="{% url 'purbeurre:detail' product_id=best_prd.id %}">
+                <img class="img-responsive cube" src="{{ best_prd.url_pic }}" alt="">
+              </a><br />
     {% if best_prd.nutrition_grade == 'a' %}                            
-        <img class="nutri" src="{% static 'purbeurre/assets/img/portfolio/thumbnails/a.png' %}" alt="icone">{% endif %}
+              <img class="nutri" src="{% static 'purbeurre/assets/img/portfolio/thumbnails/a.png' %}" alt="icone">
+    {% endif %}
     {% if best_prd.nutrition_grade == 'b' %}                            
-        <img class="nutri" src="{% static 'purbeurre/assets/img/portfolio/thumbnails/b.png' %}" alt="icone">{% endif %}
+              <img class="nutri" src="{% static 'purbeurre/assets/img/portfolio/thumbnails/b.png' %}" alt="icone">
+    {% endif %}
     {% if best_prd.nutrition_grade == 'c' %}                            
-        <img class="nutri" src="{% static 'purbeurre/assets/img/portfolio/thumbnails/c.png' %}" alt="icone">{% endif %}
+              <img class="nutri" src="{% static 'purbeurre/assets/img/portfolio/thumbnails/c.png' %}" alt="icone">
+    {% endif %}
     {% if best_prd.nutrition_grade == 'd' %}                            
-        <img class="nutri" src="{% static 'purbeurre/assets/img/portfolio/thumbnails/d.png' %}" alt="icone">{% endif %}
+              <img class="nutri" src="{% static 'purbeurre/assets/img/portfolio/thumbnails/d.png' %}" alt="icone">
+    {% endif %}
     {% if best_prd.nutrition_grade == 'e' %}                            
-        <img class="nutri" src="{% static 'purbeurre/assets/img/portfolio/thumbnails/e.png' %}" alt="icone">{% endif %}
-
-                                <span style="color: white;">{{ best_prd.name }}</span><br />
-                        {% if user.is_authenticated %}                                       
-                                {% if best_prd.name in favourite_list %}
-                                    <span style="color: blue; font-style: italic;">Enregistré</span>
-                                {% else %}
-                                    <a href="#" onclick="saving('{{best_prd.barcode}}');">
-                                    <img class="save" src="{% static 'purbeurre/assets/img/save_icon.png' %}" alt='enregistrer'>
-                                    <span>Sauvegarder</span>
-                                    </a>
-                                {% endif %}
-                        {% else %}
-                                <a href="{% url 'purbeurre:connect' %}">
-                                <img class="save" src="{% static 'purbeurre/assets/img/save_icon.png' %}" alt='enregistrer'>
-                                <span>Sauvegarder</span> 
-                                </a>   
-                        {% endif %}
-                                
-                            </p><br />
-                        </div>                           
-                    {% endfor %} 
-                    </div>           
-            </div>                                
-        </section>       
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>        
-
-    <script type="text/javascript" src="{% static 'purbeurre/assets/js/popup_saving.js' %}"></script>
-
-{% else %}
-    <section class="blackband">
-    </section>
-
-    <section class="bg-result">
-        <div class="container">
-            <h4 class="text-center mt-0">Aucune réponse trouvée. Merci de réessayer.</h4><br />
+              <img class="nutri" src="{% static 'purbeurre/assets/img/portfolio/thumbnails/e.png' %}" alt="icone">
+    {% endif %}
+              <span style="color: white;">{{ best_prd.name }}</span><br />
+    {% if user.is_authenticated %}
+      {% if best_prd.name in favourite_list %}
+              <span style="color: blue; font-style: italic;">Enregistré</span>
+      {% else %}
+              <a href="#" onclick="saving('{{best_prd.barcode}}');">
+                <img class="save" src="{% static 'purbeurre/assets/img/save_icon.png' %}" alt='enregistrer'>
+                <span>Sauvegarder</span>
+              </a>
+      {% endif %}
+      {% else %}
+              <a href="{% url 'purbeurre:connect' %}">
+                <img class="save" src="{% static 'purbeurre/assets/img/save_icon.png' %}" alt='enregistrer'>
+                <span>Sauvegarder</span>
+              </a>
+      {% endif %}
+              </p><br />
+          </div>
+  {% endfor %}
         </div>
-    </section>
+    </div>
+  </section>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{% static 'purbeurre/assets/js/popup_saving.js' %}"></script>
+{% else %}
+  <section class="blackband">
+  </section>
+  <section class="bg-result">
+    <div class="container">
+      <h4 class="text-center mt-0">Aucune réponse trouvée. Merci de réessayer.</h4><br />
+    </div>
+  </section>
 {% endif %}
-
 
 {% endblock %}
 

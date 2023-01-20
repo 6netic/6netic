@@ -34,7 +34,7 @@
           aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-{% if user.is_authenticated %}
+<!-- (( if user.is_authenticated )) -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -70,13 +70,13 @@
                  data-bs-toggle="dropdown" aria-expanded="false">Mon Compte
             </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{% url 'l_orchidee:modifyPassword' %}">Modifier MDP</a></li>
+                <li><a class="dropdown-item" href="#">Modifier MDP</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="{% url 'l_orchidee:disconnect' %}">Déconnexion</a></li>
+                <li><a class="dropdown-item" href="#">Déconnexion</a></li>
               </ul>
           </li>
         </ul>
-{% endif %}
+<!-- (( endif )) -->
       </div>
     </div>
   </nav>

@@ -1,12 +1,11 @@
 from django.urls import path
-from django.urls import include
 from . import views
 
 
 app_name = 'purbeurre'
 
 urlpatterns = [
-    # path('', views.homepage, name='homepage'),
+    path('', views.index, name='index'),
     path('index', views.index, name='index'),
     path('legal', views.legal, name='legal'),
     path('search', views.search, name='search'),
@@ -18,6 +17,5 @@ urlpatterns = [
 	path('connect', views.connect, name='connect'),
 	path('disconnect', views.disconnect, name='disconnect'),
 	path('modifypassword', views.modifypassword, name='modifypassword'),
-
 ]
 

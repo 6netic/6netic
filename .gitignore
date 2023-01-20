@@ -10,5 +10,10 @@ mainsite/l_orchidee/migrations/0001_initial.py
 mainsite/limobooking/migrations/0001_initial.py
 mainsite/purbeurre/migrations/0001_initial.py
 mainsite/ciblerie/image_copy.py
+mainsite/l_orchidee/management/commands/old_populate.py
+mainsite/l_orchidee/old_views.py
+mainsite/l_orchidee/templates/l_orchidee/old_base.html
+mainsite/purbeurre/templates/purbeurre/old_base.html
+mainsite/purbeurre/old_models.py
 
 
