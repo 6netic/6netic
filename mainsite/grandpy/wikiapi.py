@@ -32,7 +32,7 @@ class PlaceInfo:
 
 
     def search_description(self, page):
-        """ method that looks nearby our place """
+        """ Method that looks nearby our place and returns description of the page id """
 
         param = {
             "format": "json",

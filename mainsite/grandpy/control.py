@@ -1,4 +1,3 @@
-import requests
 from .parsewords import Parse
 from .googleapi import AddressGps
 from .wikiapi import PlaceInfo

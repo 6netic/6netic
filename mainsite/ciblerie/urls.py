@@ -5,6 +5,7 @@ from . import views
 app_name = 'ciblerie'
 
 urlpatterns = [
+    path('', views.index, name='index'),
     path('index', views.index, name='index'),
     path('ten_meters', views.ten_meters, name='ten_meters'),
 ]

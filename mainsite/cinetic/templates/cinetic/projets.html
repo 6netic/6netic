@@ -9,15 +9,18 @@
     <div class="row">
       <header class="section-header wow fadeInUp">
         <p>Liste des projets réalisés à ce jour.<br>
-           Le langage utilisé est Python et le framework, Django.<br>
+           Le langage utilisé est Python et les frameworks, Django et Flask.<br>
            Les bases de données utilisent PostgreSql.<br>
+           Ce site étant développé avec Django, tous les projets présentés en démonstration les sont également.<br>
+           Cependant, les dépôts avec Flask pour les sites Grandpy et Ciblerie ne sont plus visibles (Heroku étant
+           devenu payant) mais le code est encore disponible sur Github.
         </p>
       </header>
       <table class="styled-table">
         <thead>
           <tr>
             <th>Nom</th>
-            <th>Objet</th>
+            <th>Sujet</th>
             <th>Type</th>
             <th>Github</th>
             <th>Url</th>
@@ -27,7 +30,7 @@
         <tbody>
           <!-- Projet 1 : ATP Ranking -->
           <tr>
-            <td>ATP Men Ranking</td>
+            <td>ATP Ranking</td>
             <td>
               <div class="popup" onclick="showDescription('atp')">Afficher
                 <span class="popuptext" id="atp">
@@ -40,7 +43,9 @@
             <td><a href="https://github.com/6netic/atp_men_players" target="_blank">Dépôt</a></td>
             <td></td>
             <td>C'est la partie 1 d'un projet de Machine Learning qui permettra de prédire le vainqueur d'un match.<br />
-                Son utilité est d'aider à la décision d'un pari sur un joueur.
+                Son utilité est d'aider à la décision d'un pari sur un joueur.<br>
+                Il est possible que le scrapping ne fonctionne plus correctement. Cela est dû au fait que le site de
+                référence réorganise régulièrement ses balises (pour empêcher justement ce type d'activité).
             </td>
           </tr>
           <!-- Projet 2 : CompuVision -->
@@ -53,16 +58,21 @@
                 <span class="popuptext" id="grandpy">
                 Bot qui affiche la carte du lieu recherché ainsi qu'un extrait de son histoire.
                 Il s'agit d'un bot hébergé sur Heroku qui vous affiche la carte du lieu recherché
-                ainsi qu'un extrait de l'histoire de ce lieu.<br />
+                ainsi qu'un extrait de l'histoire de ce lieu.<br>
                 </span>
               </div>
             </td>
-            <td>Flask</td>
-            <td><a href="https://github.com/6netic/GrandPy" target="_blank">Dépôt</a></td>
-            <td><a href="{% url 'grandpy:index' %}" target="_blank">Site</a></td>
-            <td>Cette application web est hébergée sur Héroku. Vous entrez une adresse dans le champ de recherche
-                et si une réponse est trouvée sur MediaWiki alors ce lieu est affiché dans une carte et une courte
-                description est affichée.</td>
+            <td>Django<br>
+                Flask
+            </td>
+            <td><a href="https://github.com/6netic/6netic/tree/master/mainsite/grandpy" target="_blank">Dépôt</a><br>
+                <a href="https://github.com/6netic/GrandPy" target="_blank">Dépôt</a>
+            </td>
+            <td><a href="{% url 'grandpy:index' %}" target="_blank">Site</a><br>-
+            </td>
+            <td>Vous entrez une adresse dans le champ de recherche et si une réponse est trouvée sur MediaWiki alors
+                ce lieu est affiché sur une carte et une courte description de celui-ci est affichée.
+            </td>
           </tr>
           <!-- Projet 4 : Hunting Quizz -->
           <tr>
@@ -70,14 +80,22 @@
             <td>
               <div class="popup" onclick="showDescription('huntingquizz')">Afficher
                 <span class="popuptext" id="huntingquizz">
-                  En cours de construction.<br />
+                  Quizz sur le permis de chasse en France.<br />
                 </span>
               </div>
             </td>
             <td>Django</td>
-            <td><a href="#" target="_self">Dépôt</a></td>
+            <td><a href="https://github.com/6netic/6netic/tree/master/mainsite/hunting_quizz" target="_blank">Dépôt</a></td>
             <td><a href="{% url 'hunting_quizz:index' %}" target="_blank">Site</a></td>
-            <td>En cours de construction.</td>
+            <td>Il s'agit d'un quizz qui permet de s'entraîner pour le passage à l'examen du permis de chasse.<br>
+                2 modes sont proposés :<br>
+                - le mode assisté avec la solution détaillée affichée pour chaque réponse donnée.<br>
+                - le mode normal simulant les conditions réelles et affichant le temps passé. A la fin du test, le
+                résultat est donné.<br>
+                Le site étant en construction, et à titre de démonstration pour le moment, seules 5 questions sont
+                présentées, le temps de pouvoir alimenter la base comme il se doit.<br>
+                Enfin, je présenterai une partie qui résume l'essentiel, les bases à connaître pour réussir cet examen.
+            </td>
           </tr>
           <!-- Projet 5 : l'orchidee -->
           <tr>
@@ -85,17 +103,18 @@
             <td>
               <div class="popup" onclick="showDescription('lorchidee')">Afficher
                 <span class="popuptext" id="lorchidee">
-                  Appli web permettant d'afficher le planning des tournées pour des infirmières libérales.
+                  Appli web permettant d'afficher les tournées et le planning pour un cabinet d'infirmières libérales.
                 </span>
               </div>
             </td>
             <td>Django</td>
-            <td><a href="https://github.com/6netic/orchidee" target="_blank">Dépôt</a></td>
+            <td><a href="https://github.com/6netic/6netic/tree/master/mainsite/l_orchidee" target="_blank">Dépôt</a></td>
             <td><a href="{% url 'l_orchidee:index' %}" target="_blank">Site</a></td>
             <td>A partir de fichiers PDF des tournées générés par l'application Simply Vitale, cette appli va utiliser
-                la reconnaissance visuelle et de caractères pour l'enregistrer en base de données.<br />
+                la reconnaissance visuelle (OpenCV) et de caractères (Pytesseract) pour les enregistrer en base de données.<br />
                 On pourra ensuite visualiser chaque tournée dans un tableau avec la possibilité d'ajouter un commentaire
                 et de valider la visite du patient.<br />
+                Il sera aussi possible d'établir un planning pour les collaboratrices.<br>
                 L'intérêt est de pouvoir consulter les tournées sur smartphone et ainsi faciliter les tournées
                 quotidiennes des infirmières.
             </td>
@@ -148,7 +167,7 @@
               </div>
             </td>
             <td>Django</td>
-            <td><a href="https://github.com/6netic/dixpb" target="_blank">Dépôt</a></td>
+            <td><a href="https://github.com/6netic/6netic/tree/master/mainsite/purbeurre" target="_blank">Dépôt</a></td>
             <td><a href="{% url 'purbeurre:index' %}" target="_blank">Site</a></td>
             <td>Site qui propose des produits plus sains que celui que vous entrez.<br />
                 La base de données alimentaire provient d'OpenFoodFacts via son API.<br />
@@ -175,22 +194,29 @@
           </tr>
           <!-- Projet 10 : Shooting Target -->
           <tr>
-            <td>Shooting Target</td>
+            <td>Ciblerie</td>
             <td>
               <div class="popup" onclick="showDescription('shooting-target')">Afficher
                 <span class="popuptext" id="shooting-target">
-                Il s'agit d'une appli hébergée sur Heroku qui propose d'afficher le résultat du nombre de points
-                sur une cible de 10 mètres.<br />
-                La librairie Opencv est utilisée.<br />
-                Pour le moment, l'appli est sommaire : ne sont reconnus que 10 trous qui ne se touchent pas.<br />
-                Des exemples de photos et explications sont disponibles sur le dépot Github.
+                  Appli qui compte les points réalisés sur une cible de 10 mètres.
                 </span>
               </div>
                 </td>
-                <td>Flask</td>
-                <td><a href="https://github.com/6netic/shtarget" target="_blank">Dépôt</a></td>
-                <td><a href="{% url 'ciblerie:index' %}" target="_blank">Site</a></td>
-                <td> - </td>
+                <td>Django<br>
+                    Flask
+                </td>
+                <td><a href="https://github.com/6netic/6netic/tree/master/mainsite/ciblerie" target="_blank">Dépôt</a><br>
+                    <a href="https://github.com/6netic/shtarget" target="_blank">Dépôt</a>
+                </td>
+                <td><a href="{% url 'ciblerie:index' %}" target="_blank">Site</a><br>-
+                </td>
+                <td>Cette application permet de calculer les points réalisés sur une cible de 10 mètres.<br>
+                    La librairie Opencv est utilisée.<br>
+                    Les impacts sur la cible ne doivent pas se toucher.<br>
+                    La couleur du fond est importante, pour l'instant, seul le bleu foncé est correctement
+                    pris en compte.<br>
+                    Des exemples de photos sont téléchargeables sur le dépôt (pour Flask).
+                </td>
           </tr>
         </tbody>
       </table>

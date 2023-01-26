@@ -6,6 +6,12 @@ from math import sqrt, pi
 class Image:
     """ Main class of image """
 
+    def __init__(self):
+        """ Background color to be detected is dark blue
+            others color to be added to detect all holes ...
+        """
+        self.boundaries = [([33, 0, 0], [179, 255, 255])]
+
     def find_contours(self, image, min_val, max_val):
         """ Converts original image to binary eroded image """
 
@@ -49,7 +55,7 @@ class Image:
 
 
     def find_biggest_circle_radius(self, image, blur_k, cThr, kernel):
-        """  """
+        """ Gets infos on the biggest circle """
 
         grayImg = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         blurImg = cv2.GaussianBlur(grayImg, blur_k, 0)
@@ -62,46 +68,34 @@ class Image:
             contours_list.append(cv2.contourArea(cnt))
         max_selected_contour_index = contours_list.index(max(contours_list))
         selected_contour = contours[max_selected_contour_index]
-        # Computes excentricity
+        # Computes eccentricity
         a1 = (cv2.moments(selected_contour)['mu20'] + cv2.moments(selected_contour)['mu02']) / 2
         a2 = np.sqrt(4 * cv2.moments(selected_contour)['mu11'] ** 2 +
                      (cv2.moments(selected_contour)['mu20'] - cv2.moments(selected_contour)['mu02']) ** 2) / 2
         ecc = np.sqrt(1 - (a1 - a2) / (a1 + a2))
-        print("excentricity vaut:", ecc)
         x_centroid = round(cv2.moments(selected_contour)['m10'] / cv2.moments(selected_contour)['m00'])
         y_centroid = round(cv2.moments(selected_contour)['m01'] / cv2.moments(selected_contour)['m00'])
         length = cv2.arcLength(selected_contour, True)
         radius = length / (2 * pi)
-        # print("radius vaut:", radius)
-        ############### On va de 385 à 394. A - de 380, on annule ###############
         if radius > 369:
             radiusCircle = 369
         elif radius < 365:
             radiusCircle = 365
         else:
             radiusCircle = radius
-
-        # cv2.drawContours(image, [selected_contour], 0, (0, 255, 0), 1)
         resp = {
             'x_center': x_centroid, 'y_center': y_centroid, 'radius': radiusCircle, 'excentricity': ecc
         }
         return resp
 
 
-    def find_holes(self, image, x_centroid, y_centroid, radiusCircle):
+    def find_holes(self, image):
         """ Finds holes in the target """
 
-        holesImg = image.copy()
+        holes_in_img = image.copy()
         hsvImg = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-        # This is where to set the background color range to be detected
-        boundaries = [
-            ([0, 0, 0], [179, 255, 54]),
-            ([23, 59, 0], [179, 255, 255]),
-            ([30, 0, 0], [179, 255, 255])
-        ]
-        # Loop over the boundaries to find correct background color
         centerHolesList = []
-        for (lower, upper) in boundaries:
+        for (lower, upper) in self.boundaries:
             # Create numpy arrays from the boundaries
             lower = np.array(lower, dtype="uint8")
             upper = np.array(upper, dtype="uint8")
@@ -115,106 +109,75 @@ class Image:
             mask = cv2.medianBlur(mask, 7)
             # Detecting the 10 holes in the target
             contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
             for cnt in contours:
-                cv2.drawContours(image, [cnt], 0, (0, 255, 0), 1)
+                # Ne retenir que ce qui ressemble à un cercle
+                length = cv2.arcLength(cnt, True)
+                a = cv2.moments(cnt)['m00']
+                if a > 0:
+                    # k stands for Roundness
+                    k = (length * length) / ((cv2.moments(cnt)['m00']) * 4 * np.pi)
+                    if k < 1.32:
+                        (x, y), radius = cv2.minEnclosingCircle(cnt)
+                        if radius > 7.0:
+                            cv2.drawContours(holes_in_img, [cnt], 0, (0, 255, 0), 1)
+                            one_circle_coord = (round(x), round(y))
+                            centerHolesList.append(one_circle_coord)
+        return holes_in_img, centerHolesList
 
+
+    def get_score(self, image, points_coord, x_center, y_center, radius):
+        """ Counts points """
+
+        print("raduis vaut:", radius)
+        i = 0
+        m = len(points_coord)
+        center_to_hole_coords_array = np.zeros((m, 2), dtype=[('x', 'int'), ('y', 'int')])
+        for hole in points_coord:
+            center_to_hole_coords_array[i][0] = (x_center, y_center)
+            center_to_hole_coords_array[i][1] = (hole[0], hole[1])
+            i += 1
+        # Creating list of distance for each hole found in center_to_hole_coords_array
+        i = 0
+        dist_center_hole = []
+        for hole in center_to_hole_coords_array:
+            a2 = pow((center_to_hole_coords_array[i][1][0] - center_to_hole_coords_array[i][0][0]), 2)
+            b2 = pow((center_to_hole_coords_array[i][1][1] - center_to_hole_coords_array[i][0][1]), 2)
+            dist_center_hole.append(round(sqrt(a2 + b2)))
+            i += 1
+        total_points = []
+        i = 0
+        new_score = 0
+        for distance in dist_center_hole:
+            if distance >= radius:
+                score = 0
+            elif distance >= 329 and distance < radius:
+                score = 1
+            elif distance >= 291 and distance < 329:
+                score = 2
+            elif distance >= 254 and distance < 291:
+                score = 3
+            elif distance >= 216 and distance < 254:
+                score = 4
+            elif distance >= 179 and distance < 216:
+                score = 5
+            elif distance >= 141 and distance < 179:
+                score = 6
+            elif distance >= 101 and distance < 141:
+                score = 7
+            elif distance >= 63 and distance < 101:
+                score = 8
+            elif distance >= 26 and distance < 63:
+                score = 9
+            elif distance >= 0 and distance < 26:
+                score = 10
+            # Writing points close to respective hole
+            text_points_pos = (points_coord[i][0] + 10, points_coord[i][1] + 10)
+            cv2.putText(image, str(score), text_points_pos, cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 1)
+            i += 1
+            new_score += score
+        print("Le score est:", new_score)
+        cv2.putText(
+            image, str(new_score) + ' pts (' + str(m) + ' impacts)',
+            (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 0, 0), 2
+        )
         return image
-
-        #     if len(contours) == 10:
-        #         radiusList = []
-        #         for cnt in contours:
-        #             (x, y), radius = cv2.minEnclosingCircle(cnt)
-        #             if radius > 7.0 and radius <= 13.0:
-        #                 radiusList.append(radius)
-        #             else:
-        #                 break
-        #         if len(radiusList) == 10:
-        #             i = 0
-        #
-        #             for contour in contours:
-        #                 (x, y), radius = cv2.minEnclosingCircle(contour)
-        #                 center = (int(x), int(y))
-        #                 radius = int(radius)
-        #                 cv2.circle(holesImg, center, radius, (0, 255, 0), 1)
-        #                 i += 1
-        #                 centerHolesList.append(center)
-        # # Browsing centerHolesList and creating an array of vectors (centroid to holes)
-        # i = 0
-        # center2holeCoordsArray = np.zeros((10, 2), dtype=[('x', 'int'), ('y', 'int')])
-        # for hole in centerHolesList:
-        #     center2holeCoordsArray[i][0] = (x_centroid, y_centroid)
-        #     center2holeCoordsArray[i][1] = (hole[0], hole[1])
-        #     i += 1
-        # # Creating list of distance for each hole found in center2holeCoordsArray
-        # i = 0
-        # distanceHoles = []
-        # for hole in center2holeCoordsArray:
-        #     a2 = pow((center2holeCoordsArray[i][1][0] - center2holeCoordsArray[i][0][0]), 2)
-        #     b2 = pow((center2holeCoordsArray[i][1][1] - center2holeCoordsArray[i][0][1]), 2)
-        #     distanceHoles.append(round(sqrt(a2 + b2)))
-        #     i += 1
-        # totalPoints = []
-        # i = 0
-        # for distanceHole in distanceHoles:
-        #     if distanceHole >= radiusCircle:
-        #         score = 0
-        #     elif distanceHole >= 329 and distanceHole < radiusCircle:
-        #         score = 1
-        #     elif distanceHole >= 291 and distanceHole < 329:
-        #         score = 2
-        #     elif distanceHole >= 254 and distanceHole < 291:
-        #         score = 3
-        #     elif distanceHole >= 216 and distanceHole < 254:
-        #         score = 4
-        #     elif distanceHole >= 179 and distanceHole < 216:
-        #         score = 5
-        #     elif distanceHole >= 141 and distanceHole < 179:
-        #         score = 6
-        #     elif distanceHole >= 101 and distanceHole < 141:
-        #         score = 7
-        #     elif distanceHole >= 63 and distanceHole < 101:
-        #         score = 8
-        #     elif distanceHole >= 26 and distanceHole < 63:
-        #         score = 9
-        #     elif distanceHole >= 0 and distanceHole < 26:
-        #         score = 10
-        #     # Writing points close to respective hole
-        #     position = (centerHolesList[i][0] + 10, centerHolesList[i][1] + 10)
-        #     cv2.putText(holesImg, str(score), position, cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 1)
-        #     i += 1
-        #     totalPoints.append(score)
-        # totalPointsSum = sum(totalPoints)
-        # cv2.putText(holesImg, str(totalPointsSum) + ' points', (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 0, 0), 2)
-        #
-        # return holesImg
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,8 +1,7 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 from django.http import JsonResponse
 from . prepare import Prepare
 from .image import Image
-# from . process import erode_image
 from datetime import datetime
 
 
@@ -37,50 +36,9 @@ def ten_meters(request):
                 resp["x_center"], resp["y_center"], resp["radius"], resp['excentricity']
             if excentricity > 0.16:
                 return JsonResponse(status=417, data={"mess": "La cible n'a pas pu être reconnue correctement."})
-            # elif radius not in [378, 396]: le rajouter en haut avec or
-
-            final_img = Image().find_holes(extracted_img, x_center, y_center, radius)
-
-
-
-            # Saving treated image to out folder
-            Prepare().save_after_treatment(final_img) # saves encoded array to temp.jpg file in /out folder
+            holes_in_img, points_coord = Image().find_holes(extracted_img)
+            Image().get_score(holes_in_img, points_coord, x_center, y_center, radius)
+            # Saving final image to 'out/' folder
+            Prepare().save_after_treatment(holes_in_img)
             dateNow = datetime.now().strftime('%Y%m%d%H%M%S')
             return JsonResponse(status=200, data={"mess": dateNow})
-
-
-
-
-
-
-    #         # Processing the image
-    #         processImg = Process(img_opencv)
-    #         processImg = processImg.sumOfAllProcesses()
-    #         # Extracting the image
-    #         extractImg = Extract(img_opencv, processImg)
-    #         try:
-    #             extractImg = extractImg.sumOfAllProcesses()
-    #         except ValueError:
-    #             os.remove(img)
-    #             data = {"mess": "Echec. La couleur du fond n'a pas pu être dissociée."}
-    #             return jsonify(data), 409
-    #         # Getting biggest circle and holes from the target
-    #         getPoints = CountPoints(extractImg)
-    #         try:
-    #             resp = getPoints.getBiggestCircleRadius(extractImg, (3, 3), [40, 70], (3, 3))
-    #             contourImg, x_centroid, y_centroid, radiusCircle = \
-    #                 resp["cntImg"], resp["xCenter"], resp["yCenter"], resp["radius"]
-    #             holesImg = getPoints.getHoles(x_centroid, y_centroid, radiusCircle)
-    #         except:
-    #             os.remove(img)
-    #             data = {"mess": "Echec. Impossible de repérer les 10 trous."}
-    #             return jsonify(data), 409
-    #
-    #         # Saving the image
-
-    #
-    # else:
-    #     # GET request
-    #     return render_template("index.html")
-    #
-    # return render(request, "ciblerie/ten_meters.html")
