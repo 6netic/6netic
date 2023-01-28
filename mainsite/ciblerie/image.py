@@ -128,7 +128,6 @@ class Image:
     def get_score(self, image, points_coord, x_center, y_center, radius):
         """ Counts points """
 
-        print("raduis vaut:", radius)
         i = 0
         m = len(points_coord)
         center_to_hole_coords_array = np.zeros((m, 2), dtype=[('x', 'int'), ('y', 'int')])
@@ -175,7 +174,6 @@ class Image:
             cv2.putText(image, str(score), text_points_pos, cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 1)
             i += 1
             new_score += score
-        print("Le score est:", new_score)
         cv2.putText(
             image, str(new_score) + ' pts (' + str(m) + ' impacts)',
             (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 0, 0), 2

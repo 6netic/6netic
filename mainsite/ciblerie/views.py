@@ -42,3 +42,4 @@ def ten_meters(request):
             Prepare().save_after_treatment(holes_in_img)
             dateNow = datetime.now().strftime('%Y%m%d%H%M%S')
             return JsonResponse(status=200, data={"mess": dateNow})
+

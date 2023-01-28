@@ -1,4 +1,5 @@
 from os import path, mkdir, listdir, remove
+from pathlib import Path
 import numpy as np
 import cv2
 
@@ -9,16 +10,19 @@ class Prepare:
     def __init__(self):
 
         self.base_path = path.dirname(path.abspath(__file__))
-        self.pictures_dir = path.join(self.base_path, "static/ciblerie/pictures")
-        self.in_dir = path.join(self.pictures_dir, "in")
-        self.out_dir = path.join(self.pictures_dir, "out")
+        self.picture_dir = path.join(self.base_path, "picture_in")
+        self.in_dir = path.join(self.picture_dir, "in")
+        # self.static_base_path = path.dirname(path.dirname(path.abspath(__file__)))
+        self.static = path.join(self.base_path, "static")
+        self.ciblerie = path.join(self.static, "ciblerie")
+        self.out_dir = path.join(self.ciblerie, "out")
 
 
     def create_folders(self):
         """ Creates empty directories or delete all files within in/ and out/ """
 
         try:
-            mkdir(self.pictures_dir)
+            mkdir(self.picture_dir)
             mkdir(self.in_dir)
             mkdir(self.out_dir)
 
@@ -27,7 +31,6 @@ class Prepare:
                 for file in listdir(directory):
                     file = path.join(directory, file)
                     remove(file)
-
         return self.in_dir, self.out_dir
 
 

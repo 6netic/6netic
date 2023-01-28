@@ -3,7 +3,11 @@ documents/
 mainsite/mainsite/settings.py
 mainsite/.env
 mainsite/l_orchidee/documents/
-mainsite/ciblerie/static/ciblerie/pictures/
+mainsite/ciblerie/static/ciblerie/out/*
+mainsite/ciblerie/picture_in/in/*
+mainsite/ciblerie/templates/ciblerie/ten_meters.html
+mainsite/ciblerie/templates/ciblerie/tests_1.html
+mainsite/ciblerie/templates/ciblerie/tests_2.html
 mainsite/cinetic/migrations/0001_initial.py
 mainsite/hunting_quizz/migrations/0001_initial.py
 mainsite/l_orchidee/migrations/0001_initial.py
@@ -16,5 +20,6 @@ mainsite/l_orchidee/templates/l_orchidee/old_base.html
 mainsite/purbeurre/templates/purbeurre/old_base.html
 mainsite/purbeurre/old_models.py
 mainsite/grandpy/tests/test_views.py
+mainsite/static/
 
 
