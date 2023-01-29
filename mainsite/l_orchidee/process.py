@@ -14,7 +14,7 @@ class Process:
         date = ""
         file_num = int(img_file[-5:-4])
         # Comment next line for production environment
-        pytesseract.pytesseract.tesseract_cmd = "C:\Program Files\Tesseract-OCR\\tesseract.exe"
+        # pytesseract.pytesseract.tesseract_cmd = "C:\Program Files\Tesseract-OCR\\tesseract.exe"
         img_path = path.join(img_dir, img_file)
         img_bgr = cv2.imread(img_path)
         img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
