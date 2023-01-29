@@ -49,7 +49,7 @@ formular.addEventListener("submit", function(e) {
 					document.getElementById("formBlock").innerHTML = "";
 					var output = document.getElementById("picture");
 					var image = document.createElement("img");
-					image.src = "/static/ciblerie/out/temp.jpg";
+					image.src = "/ciblerie/media/out/temp.jpg";
 					output.appendChild(image);
 				})
 			}

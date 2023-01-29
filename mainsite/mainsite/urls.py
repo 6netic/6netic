@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from cinetic import views
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
@@ -29,4 +30,4 @@ urlpatterns = [
     path('grandpy/', include('grandpy.urls')),
     path('hunting_quizz/', include('hunting_quizz.urls')),
     path('admin/', admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
