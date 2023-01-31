@@ -11,7 +11,10 @@ class Prepare:
         self.base_path = path.dirname(path.abspath(__file__))
         self.media_dir = path.join(self.base_path, "media")
         self.in_dir = path.join(self.media_dir, "in")
-        self.out_dir = path.join(self.media_dir, "out")
+        # out on static/ciblerie/out
+        self.static = path.join(self.base_path, "static")
+        self.stat_cib = path.join(self.static, "ciblerie")
+        self.out_dir = path.join(self.stat_cib, "out")
 
 
     def create_folders(self):
@@ -20,7 +23,7 @@ class Prepare:
         try:
             mkdir(self.media_dir)
             mkdir(self.in_dir)
-            mkdir(self.out_dir)
+            # mkdir(self.out_dir)
 
         except FileExistsError:
             for directory in [self.in_dir, self.out_dir]:
@@ -62,6 +65,12 @@ class Prepare:
 
         final_picture = path.join(self.out_dir, 'temp.jpg')
         cv2.imwrite(final_picture, image)
+        mainsite_dir = path.dirname(path.dirname(path.abspath(__file__)))
+        mainsite_static_dir = path.join(mainsite_dir, "static")
+        mainsite_static_cib_dir = path.join(mainsite_static_dir, "ciblerie")
+        mainsite_static_cib_out_dir = path.join(mainsite_static_cib_dir, "out")
+        static_picture = path.join(mainsite_static_cib_out_dir, 'temp.jpg')
+        cv2.imwrite(static_picture, image)
 
 
 

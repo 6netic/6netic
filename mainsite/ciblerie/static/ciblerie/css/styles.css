@@ -94,12 +94,13 @@ body {
   padding-top: 14rem;
 }
 
-#message {
+.message {
   font-family: 'Verdana', 'Sans-Serif';
-  font-size: 1rem;
+  font-size: 0.8rem;
   display: block;
   position: relative;
   top: 14rem;
+  margin-bottom: -2em;
   color: red;
   text-align: center;
   width: 100%;
@@ -155,7 +156,7 @@ button {
   #srcfile {
 	font-size: 1.2rem;
   }
-  #message {
+  .message {
     font-size: 1.1rem;
     top: 15rem;
   }
@@ -182,7 +183,7 @@ button {
   #srcfile {
 	font-size: 1.2rem;
   }
-  #message {
+  .message {
     font-size: 1.2rem;
     top: 16rem;
   }
@@ -209,7 +210,7 @@ button {
   #srcfile {
 	font-size: 1.2rem;
   }
-  #message {
+  .message {
     font-size: 1.3rem;
     top: 17rem;
   }
@@ -236,7 +237,7 @@ button {
   #srcfile {
   font-size: 1.2rem;
   }
-  #message {
+  .message {
     font-size: 1.5rem;
     top: 18rem;
   }

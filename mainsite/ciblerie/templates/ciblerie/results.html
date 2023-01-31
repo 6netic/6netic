@@ -1,0 +1,25 @@
+{% load static %}
+
+<div id="results">
+{% if nofile %}
+  <p class="message">{{ nofile }}</p>
+{% endif %}
+{% if ext %}
+  <p class="message">{{ ext }}</p>
+{% endif %}
+{% if toobig %}
+  <p class="message">{{ toobig }}</p>
+{% endif %}
+{% if eccent %}
+  <p class="message">{{ eccent }}</p>
+{% endif %}
+{% if outpic %}
+  <script>
+    var block = document.getElementById("formBlock");
+    block.style.display = 'none';
+  </script>
+  <div id="picture">
+    <img src="{% static 'ciblerie/out/temp.jpg' %}" alt="resultat points">
+  </div>
+{% endif %}
+</div>

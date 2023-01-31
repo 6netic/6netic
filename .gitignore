@@ -17,5 +17,10 @@ mainsite/purbeurre/templates/purbeurre/old_base.html
 mainsite/purbeurre/old_models.py
 mainsite/grandpy/tests/test_views.py
 mainsite/static/
+mainsite/ciblerie/static/ciblerie/css/old_styles.css
+mainsite/ciblerie/static/ciblerie/js/targetapp.js
+mainsite/ciblerie/templates/ciblerie/old_index.html
+mainsite/ciblerie/templates/ciblerie/old_base.html
+mainsite/ciblerie/old_views.py
 
 
